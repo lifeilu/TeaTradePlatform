@@ -1,0 +1,88 @@
+<div style="padding-top:12px">
+    <div class="mynavbar"><a class="top-link" href="#">茶行天下</a>
+    </div>
+    <div class="selector">
+     <div class="row" style="margin:0px">
+      <div class="col-md-12">
+        <p>
+            筛选商品
+        </p>
+        <div class="row">
+            <div class="filter clearfix">
+                <span class="fund_name">类别</span>
+                <ul>
+                    <li><a id="category0" ng-click = "ccategory(0)" class = "current">不限</a></li>
+                    <li><a id="category1" ng-click = "ccategory(1)" >现货</a></li>
+                    <li><a id="category2" ng-click = "ccategory(2)" >预售</a></li>
+                </ul>
+            </div>
+            <div class="filter clearfix">
+                <span class="fund_name">价格</span>
+                <ul>
+                    <li><a id="price1" ng-click = "price(1)" class = "current">不限</a></li>
+                    <li><a id="price2" ng-click = "price(2)" >0-20</a></li>
+                    <li><a id="price3" ng-click = "price(3)" >20-50</a></li>
+                    <li><a id="price4" ng-click = "price(4)" >50-100</a></li>
+                    <li><a id="price5" ng-click = "price(5)" >100-200</a></li>
+                    <li><a id="price6" ng-click = "price(6)" >200以上</a></li>
+                </ul>
+            </div>
+            <div class="filter clearfix">
+                <span class="fund_name">剩余数量</span>
+                <ul>
+                    <li><a id="remainder1" ng-click = "cremainder(1)" class = "current">不限</a></li>
+                    <li><a id="remainder2" ng-click = "cremainder(2)" >0-20</a></li>
+                    <li><a id="remainder3" ng-click = "cremainder(3)" >20-50</a></li>
+                    <li><a id="remainder4" ng-click = "cremainder(4)" >50-100</a></li>
+                    <li><a id="remainder5" ng-click = "cremainder(5)" >100以上</a></li>
+                </ul>
+            </div>
+        </div>
+      </div>
+     </div>
+    </div>
+    <div class="row">
+        <div ng-repeat="tea in teas | orderBy:'id'" class="col-md-3 col-sm-3 col-xs-3">
+            <div class="row">
+                <div>
+                    <a ui-sref="fund.detail({tea:tea.id})">
+                        <img class="teapic" src="/api/image/getByUrl?url={{tea.product.url}}">
+                    </a>
+                    <table class="author" style="word-break:normal; word-wrap:break-all;">
+                        <tr valign="top">
+                            <td valign="top" style="padding-left:15px" >茶叶名:&nbsp</td>
+                            <td width="70%" ><span style="border-bottom:1px dashed rgb(176, 195, 48)" data-toggle="tooltip" data-placement="right" data-html="true">{{tea.product.name}}<span></td>
+                        </tr>
+                        <tr>
+                            <td valign="top" style="padding-left:15px">产地:&nbsp</td>
+                            <td width="70%">{{tea.product.locality}}</td>
+                        </tr>
+                        <tr>
+                            <td valign="top" style="padding-left:15px">每份数量:&nbsp</td>
+                            <td width="70%">{{tea.unitNum}}两</td>
+                        </tr>
+                        <tr>
+                            <td valign="top" style="padding-left:15px">价格:&nbsp</td>
+                            <td width="70%">{{tea.unitMoney}}元/份</td>
+                        </tr>
+                        <tr>
+                            <td valign="top" style="padding-left:15px">结束日期:&nbsp</td>
+                            <td width="70%">{{tea.dealDate}}</td>
+                        </tr>
+                        <tr>
+                            <td valign="top" style="padding-left:15px">剩余数量:&nbsp</td>
+                            <td width="70%">{{tea.remainderNum}}份</td>
+                        </tr>
+                    </table>                                
+                </div>  
+            </div>
+        </div>
+    </div>
+    <button ng-disabled="nowPage == 1" class="btn btn-list btn-w-md" ng-click="prev()">上一页</button>
+    <input ng-model = "page" style="width:3%">
+    <button class="btn btn-list btn-w-md" ng-click="jump()">跳转</button>
+    {{nowPage}}
+    /
+    {{totalPage}}
+    <button ng-disabled="nowPage >= totalPage" class="btn btn-list btn-w-md" ng-click="next()">下一页</button>
+</div>

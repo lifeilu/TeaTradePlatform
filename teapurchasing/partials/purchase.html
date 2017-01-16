@@ -1,0 +1,31 @@
+<div  style="padding-top:12px">
+	<div class="recommend">
+	 <div class="row" style="margin:0px">
+		<div style="text-align:center;padding:20px;">
+				<a class='confirm-button' ui-sref="main.home">购买成功返回主页</a>
+		</div>
+	</div>
+    <div class="recommend">
+    <div class="row" style="margin:0px">
+      <div class="col-md-12">
+        <div class="row recommend-nav">
+          <div class="col-md-12 col-sm-12 col-xs-12 bigtitle">
+            <img class="first-logo" src="images/icon_gray.png">你也许会喜欢下面的商品
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div ng-repeat="tea in teas" class="col-md-3 col-sm-3 col-xs-3">
+        <div align="center">
+          <img class="add-bookpic" src="/api/image/getByUrl?url={{tea.url}}">
+        </div>
+        <div class="text-center"><a style="border-bottom: 1px solid" ui-sref="main.detail({tea: tea.id})" class="ng-binding" >{{tea.name}}</a></div>
+        <div class="text-center ng-binding">
+          {{tea.price}}元/两
+        </div>
+      </div>
+    </div>
+    </div>
+
+</div>

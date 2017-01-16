@@ -1,0 +1,63 @@
+<div ng-include="'views/left-frame.html'"></div>
+<div class="content" >
+    <div class="header">
+        <h1 class="page-title">数据分析</h1>
+        <ul class="breadcrumb">
+            <li><a href="#!/home">主页</a> </li>
+            <li><a href="#!/analysis">数据分析</a> </li>
+            <li class="active">图表展示</li>
+        </ul>
+    </div>
+
+    <div class="main-content">
+
+<div class="row">
+
+
+<!--<div>-->
+    <!--<p>测试图表</p>-->
+    <!--<canvas class="chart chart-horizontal-bar" chart-data="testdata" chart-labels="testlabel"-->
+            <!--chart-series="testserie" chart-options="testoption" chart-colors="testcolor"></canvas>-->
+<!--</div>-->
+
+    <!--<div class="panel panel-default">-->
+        <!--<div class="panel-heading">图表展示</div>-->
+             <!--<div class="panel-body">-->
+                 <div class="col-lg-6 col-sm-12">
+                    <canvas class="chart chart-line" chart-data="data" chart-labels="labels"
+                            chart-series="series" chart-colors="colors" chart-click="onClick" style＝""></canvas>
+
+                    <canvas class="chart chart-horizontal-bar" chart-data="data" chart-labels="labels"
+                            chart-series="series" chart-options="options"></canvas>
+
+                    <canvas class="chart chart-radar" chart-data="data" chart-labels="labels"
+                            chart-series="series" chart-options="options"></canvas>
+
+                     <!--<canvas class="chart chart-bubble" chart-data="data" chart-labels="labels"-->
+                             <!--chart-series="series" chart-options="options"></canvas>-->
+
+                </div>
+                <div class="col-lg-6 col-sm-12">
+                    <canvas class="chart chart-bar" chart-data="data" chart-labels="labels"
+                            chart-series="series" chart-options="options"></canvas>
+
+                    <canvas class="chart chart-doughnut" chart-data="data" chart-labels="labels"
+                            chart-series="series" chart-options="options" chart-colors="colors"></canvas>
+
+                    <!--<canvas class="chart chart-pie" chart-data="data" chart-labels="labels"-->
+                            <!--chart-series="series" chart-options="options"></canvas>-->
+
+                    <canvas class="chart chart-polar-area" chart-data="data" chart-labels="labels"
+                            chart-series="series" chart-options="options"></canvas>
+
+
+
+
+                </div>
+             <!--</div>-->
+    <!--</div>-->
+</div>
+    </div>
+    <div ng-include="'views/footer.html'"></div>
+</div>
+

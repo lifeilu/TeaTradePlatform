@@ -1,0 +1,64 @@
+<div ng-include src="'partials/header.html'"></div>
+<div class="sidebar" role="navigation" style="background-color: #FAFAFA;">
+    <div class="whole-frame">
+
+        <div class="left-frame">
+            <div style="min-height:750px">
+                <div align="center">
+                    <div class="avatar-teacher">
+                        <label for="avatar-student" class="pos-r" ng-click="readAvatar()">
+                            <input type="file" name="file" id="avatar-student" class="pos-a top-200"/>
+                            <!--<img ng-click="readAvatar()" ng-show="currentUser.photo==null" src="trashimg/teacheravatar.jpg"/>-->
+                            <img ng-show="currentUser.account.headURL==null" class="avatar"
+                                 ng-src="{{avatarSource}}"/>
+                            <img ng-show="currentUser.account.headURL!=null" class="avatar"
+                                 src="/api/image/getByUrl?url={{currentUser.account.headURL}}"/>
+
+                            <div class="pos-a upload-hint">
+                                <div class="hint-words">点击修改头像</div>
+                            </div>
+                        </label>
+                        <br>
+                        <br>
+                        <a class="teacher-name">{{currentUser.nickname}}</a>
+                    </div>
+                </div>
+                <p style="border-top: 1px solid #e6e6e6;"></p>
+
+                <div class="myTab">
+                    <li ui-sref-active="active">
+                        <a ui-sref="user.userinfo"><i class="fa fa-fw"><img
+                                src="/images/icon_gray.png"></i>个人中心</a>
+                    </li>
+                </div>
+
+
+                <div class="myTab">
+                    <li ui-sref-active="active">
+                        <a style = "cursor:pointer;" ng-click = "jumporder()"><i class="fa fa-fw"><img
+                                src="/images/icon_gray.png"></i>我的订单</a>
+                    </li>
+                </div>
+
+                <div class="myTab">
+                    <li ui-sref-active="active">
+                        <a ui-sref="user.userfund"><i class="fa fa-fw"><img
+                                src="/images/icon_gray.png"></i>众筹订单</a>
+                    </li>
+                </div>
+                <div class="myTab">
+                    <li ui-sref-active="active">
+                        <a ui-sref="user.usersource"><i class="fa fa-fw"><img
+                                src="/images/icon_gray.png"></i>众包订单</a>
+                    </li>
+                </div>
+            </div>
+
+        </div>
+        <div class="right-frame">
+            <main class="main-view-container main-container" style="min-height:1150px" ui-view></main>
+        </div>
+        <div style="clear:both"></div>
+
+    </div>
+</div>

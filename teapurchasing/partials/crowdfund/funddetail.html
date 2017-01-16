@@ -1,0 +1,103 @@
+<div style="padding-top:12px">
+    <div class="row thebook">
+        <div class="col-md-6 col-sm-6 col-xs-6" style="padding-left:30px">
+            <div id="myCarousel" class="carousel slide">
+                    <carousel class="carousel-inner" interval="myInterval" style = "height:500px">
+                        <slide ng-repeat="slide in slides" active="slide.active" >
+                            <img ng-src="/api/image/getByUrl?url={{slide.url}}" style="margin:auto;height: 500px;">
+                            <div class="carousel-caption"></div>
+                        </slide>
+                    </carousel>   
+            </div>
+        </div>
+        <div class="col-md-6 col-sm-6 col-xs-6 thebookintro">
+            <div class="coursename" style="padding-top:8px;font-size:25px;line-height:35px">茶叶名称:   {{tea.product.name}}</div>
+            <table class="bookdetail" style="">
+                <tbody>
+                    <tr valign="top" data-toggle="tooltip" data-placement="right" data-html="true">
+                        <td valign="top" style="padding-left:15px">店&nbsp&nbsp家:</td>
+                        <td style = "padding-left: 10px">{{tea.product.teaSaler.nickname}}</td>
+                    </tr>
+                    <tr>
+                        <td valign="top" style="padding-left:15px">等&nbsp&nbsp级:</td>
+                        <td style = "padding-left: 10px">{{levelEnum[tea.product.level]}}</td>
+                    </tr>
+                    <tr>
+                        <td valign="top" style="padding-left:15px">产&nbsp&nbsp地:</td>
+                        <td style = "padding-left: 10px">{{tea.product.locality}}</td>
+                    </tr>
+                    <tr>
+                        <td valign="top" style="padding-left:15px">邮&nbsp&nbsp费:</td>
+                        <td style = "padding-left: 10px">{{tea.product.postage}}元</td>
+                    </tr>
+                    <tr>
+                        <td valign="top" style="padding-left:15px">每份数量:</td>
+                        <td style = "padding-left: 10px">{{tea.unitNum}}两</td>
+                    </tr> 
+                    <tr>
+                        <td valign="top" style="padding-left:15px">份&nbsp&nbsp数:</td>
+                        <td style = "padding-left: 10px" width="150px">
+                          <a href='#' ng-click="decnum()">-</a>
+                          <input type="number" ng-model="teanum" style="width:40px">
+                          <a href='#' ng-click="addnum()">+</a>份
+                        </td>
+                    </tr>                  
+                    <tr>
+                        <td valign="top" style="padding-left:15px">定&nbsp&nbsp金:</td>
+                        <td style = "padding-left: 10px">{{tea.earnest}}元/份</td>
+                    </tr> 
+                    <tr>
+                        <td valign="top" style="padding-left:15px">价&nbsp&nbsp格:</td>
+                        <td style = "padding-left: 10px">{{tea.unitMoney}}元/份</td>
+                    </tr> 
+                    <tr>
+                        <td valign="top" style="padding-left:15px">参与人数:</td>
+                        <td style = "padding-left: 10px">{{tea.joinNum}}人</td>
+                    </tr> 
+                    <tr>
+                        <td valign="top" style="padding-left:15px">剩余总量:</td>
+                        <td style = "padding-left: 10px">{{tea.remainderNum}}份</td>
+                    </tr> 
+                    <tr>
+                        <td valign="top" style="padding-left:15px">总&nbsp&nbsp量:</td>
+                        <td style = "padding-left: 10px">{{tea.totalNum}}份</td>
+                    </tr> 
+                    <tr>
+                        <td valign="top" style="padding-left:15px">开始时间:</td>
+                        <td style = "padding-left: 10px">{{tea.createDate}}</td>
+                    </tr>
+                    <tr>
+                        <td valign="top" style="padding-left:15px">结束时间:</td>
+                        <td style = "padding-left: 10px">{{tea.dealDate}}</td>
+                    </tr> 
+                    <tr>
+                        <td valign="top" style="padding-left:15px">发货时间:</td>
+                        <td style = "padding-left: 10px">{{tea.deliverDate}}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div>
+                <div class="col-md-6 col-sm-6 col-xs-6" style="margin-top:18px">
+                    <div class="buy-button" style="padding-top:5px"><a ng-click="fundadd()" style="font-size:18px">参与众筹</a> 
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-6" style="margin-top:18px">
+                    <div class="buy-button" style="padding-top:5px"><a ui-sref="main.detail({tea:tea.product.id})" style="font-size:18px">查看商品详情</a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row coursedescription">
+        <div class="row" style="margin:0px">
+            <div class="col-md-12">
+                <div class="recommend-nav">
+                    <div class="col-md-12 col-sm-12 col-xs-12 bigtitle">
+                        <img class="first-logo" src="/images/icon_gray.png">&nbsp;详细介绍</div>
+                </div>
+                <div class="coursedes-detail" ng-bind-html="remark">
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

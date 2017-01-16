@@ -1,0 +1,53 @@
+<ion-view hide-nav-bar="true">
+	<ion-header-bar align-title="center" class="my-nav-bar bar-positive" scroll-to-top>
+		<h1 class="title">产品列表</h1>
+		<button class="button button-clear ion-plus" style="font-size: 25px" ui-sref="addProduct" nav-direction="forward" ng-show="currentUser.state == 1"></button>
+	</ion-header-bar>
+	<!--<ion-tabs class="tabs has-header my-top-tabs" style="border-top: none; border-left: none; border-right: none; border-bottom: 1px grey solid">-->
+		<!--<ion-tab title="未上架" on-select="stateSwitch()"></ion-tab>-->
+		<!--<ion-tab title="已上架" on-select="stateSwitch()"></ion-tab>-->
+	<!--</ion-tabs>-->
+	<div class="lty-header-tab">
+		<a class="left-tab" ng-class="{true: 'active'}[state == 0]" ng-click="state = 0">
+			未上架
+		</a>
+		<a class="right-tab" ng-class="{true: 'active'}[state == 1]" ng-click="state = 1">
+			已上架
+		</a>
+	</div>
+	<ion-content on-swipe-left="toRightTab()" class="has-header" style="top: 91px">
+		<ion-refresher pulling-text="下拉刷新" on-refresh="refreshProductList()" class="lty-refresher"></ion-refresher>
+		<ion-list class="lty-list">
+			<ion-item ng-repeat="product in products | onSale: state" class="item-thumbnail-left">
+				<img ng-src="{{product.url | productImageUrl}}" ui-sref="modifyProduct({modifyProductInfo:product})" nav-direction="forward" style="border: 1px solid #ddd">
+				<div style="display: inline-block" ui-sref="modifyProduct({modifyProductInfo:product})" nav-direction="forward">
+					<h2>产品名: {{product.name}}</h2>
+					<div style="margin-top: 8px; color: dimgrey">
+						<h3 style="color: #444444">产品类型: {{product.productType.name}}</h3>
+						<h3 style="color: #444444">质量等级: {{product.level | level}}</h3>
+						<h3 style="color: #444444">
+							单价: ￥{{(product.price * product.discount).toFixed(2)}} &nbsp&nbsp<del style="color: rgba(0,0,0,0.4);">{{product.price}}</del> &nbsp/两
+
+						</h3>
+					</div>
+				</div>
+				<div style="float:right;" style="display: inline-block" ng-if="state == 0">
+					<button class="button button-clear button-balanced" style="color: #4AA53D; display: block" ng-click="startSell(product)">
+						上架<i class="icon ion-paper-airplane"></i>
+					</button>
+					<button class="button button-clear button-assertive" style="display: block" ng-click="deleteProduct(product)">
+						删除<i class="icon ion-trash-a"></i>
+					</button>
+				</div>
+				<div style="float:right;" style="display: inline-block" ng-if="state == 1">
+					<button class="button button-clear button-balanced" style="color: #4AA53D; display: block" ui-sref="tabs.order({'product': product.id})">
+						订单<i class="icon ion-more"></i>
+					</button>
+					<button class="button button-clear button-assertive" style="display: block" ng-click="downProduct(product)">
+						下架<i class="icon ion-log-out"></i>
+					</button>
+				</div>
+			</ion-item>
+		</ion-list>
+	</ion-content>
+</ion-view>

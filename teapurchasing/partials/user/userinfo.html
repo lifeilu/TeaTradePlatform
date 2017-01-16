@@ -1,0 +1,100 @@
+<div style="">
+    <div class="user-mynavbar" style=""><a class="top-link" href="#">个人中心</a>
+    </div>
+    <div style="border:1px solid;border-color:rgba(0,0,0,.1);padding:0px 10px;" class="panel-group"
+         id="accordion">
+        <div class="panel panel-default" id="orderpanel">
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div style="height:auto">
+                        <div class="row recommend-nav">
+                            <div class="col-md-10 col-sm-10 col-xs-10 bigtitle">
+                                <!--<img src="images/add/aishangtaoke.svg">-->
+                                个人资料
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+
+            </div>
+            <form class="form-horizontal panel-collapse collapse in" role="form" id="userform">
+                <div class="panel-body" style="height:500px">
+                    <div class="form-group student-form-group">
+                        <label for="firstname" class="control-label" style="width:100px"><img src="images/icon_gray.png" >　昵　称　 |</label>
+
+                        <div class="first-student-input" style="display:inline-block;width:600px">
+                            <input type="text" class="form-control user-input" id="firstname" data-ng-model="user.nickname"
+                                   placeholder="请输入昵称" >
+                        </div>
+
+                    </div>
+
+                    <div class="form-group student-form-group">
+                        <label for="firstname" class=" control-label" style="width:100px"><img
+                                src="images/icon_gray.png">　手　机　 |</label>
+
+                        <div class="first-student-input" style="display:inline-block;width:600px">
+                            <input type="text" class="form-control user-input" id="firstname" data-ng-model="user.tel" disabled=true>
+                        </div>
+
+                    </div>
+                    <div class="form-group student-form-group">
+                        <label for="firstname" class="control-label" style="width:100px"><img
+                                src="images/icon_gray.png">　通讯地址 |</label>
+
+                        <div class="first-student-input" style="display:inline-block;width:600px">
+                            <input select-address p="p" c="c" a="a" d="d" ng-model="user.address" placeholder="请选择所在地" type="text" class="form-control" />                            
+                        </div>
+
+                    </div>
+
+                    <div class="form-group student-form-group">
+                        <label for="lastname" class="control-label" style="width:100px"><img
+                                src="images/icon_gray.png">　邮　编　 |</label>
+
+                        <div class="first-student-input" style="display:inline-block;width:600px">
+                            <input type="text" class="form-control user-input" id="lastname" data-ng-model="user.zip"
+                                   placeholder="请输入邮编">
+                        </div>
+                    </div>
+
+                    <div class="form-group student-form-group">
+                        <label for="firstname" class=" control-label" style="width:100px"><img
+                                src="images/icon_gray.png">　余　额　 |</label>
+
+                        <div class="first-student-input" style="display:inline-block;width:600px">
+                            <input type="text" class=" form-control user-input" id="firstname" data-ng-model="user.money" disabled=true>
+                        </div>
+                    </div>
+                    <div class="form-group student-form-group">
+                        <label for="firstname" class="control-label"style="width:100px"><img
+                                src="images/icon_gray.png">　操　作　 |</label>
+                        <div class="first-student-input" style="display:inline-block; padding-left:0px; width:288px">
+                            <a style ="cursor: pointer;" ng-click = "charge($event)">充值</a>
+                        </div>
+                        <div style="display:inline-block; padding-left:0px; width:288px">
+                            <a style ="cursor: pointer;" ng-click = "changepass($event)">修改密码</a>
+                        </div>
+                    </div>                    
+                    <div class="form-group student-form-submit" style="margin-left:145px">
+                        <label for="firstname" class="control-label"></label>
+
+                        <div class="">
+                            <div class="" style="display:inline-block; padding-left:0px; width:288px">
+                                <button ng-click="submit()" type="submit" class="btn btn-default" id="save" style="">保存</button>
+                            </div>
+                            <div class="" style="display:inline-block; padding-left:0px; width:288px">
+                                <button ng-click="giveup()" type="submit" class="btn btn-default" id="giveup">放弃
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+</div>

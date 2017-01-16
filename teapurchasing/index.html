@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="zh-cn" ng-app="teasale" ng-controller="MasterCtrl">
+
+<head>
+    <meta charset="utf-8"/>
+
+    <base href="/" target="_blank">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>茶行天下</title>
+
+    <!-- core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <link href="css/animate.min.css" rel="stylesheet">
+    <link href="css/prettyPhoto.css" rel="stylesheet">
+    <link href="css/responsive.css" rel="stylesheet">
+    <link href="css/base.css" rel="stylesheet">
+    <link href="css/teasale.css" rel="stylesheet">
+
+
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+    <!--<link rel="shortcut icon" href="images/ico/favicon.ico">-->
+    <!--
+      <script type="text/javascript">
+          $(function() {
+              var r = document.body.offsetWidth / window.screen.availWidth;
+              $(document.body).css("-webkit-transform","scale(" + r + ")");
+          });
+          $(window).resize(function() {
+              var r = document.body.offsetWidth / window.screen.availWidth;
+              $(document.body).css("-webkit-transform","scale(" + r + ")");
+          });
+      </script>
+      -->
+    <script type="text/javascript">
+        (function () {
+            //$("[data-toggle='tooltip']").tooltip();
+            //$("[data-toggle='popover']").popover('toggle');
+
+            $("[data-toggle='popover']").on('mouseenter', function () {
+                var _this = this;
+                $(this).popover('show');
+                $(this).siblings('.popover').on('mouseleave', function () {
+                    $(_this).popover('hide');
+                });
+            }).on('mouseleave', function () {
+                var _this = this;
+                setTimeout(function () {
+                    if (!$(".popover:hover").length) {
+                        $(_this).popover('hide');
+                    }
+                });
+            });
+
+            //使页面文字不可选择
+            $(this).bind("contextmenu", function(e) {
+              e.preventDefault();
+            });
+
+    });
+
+
+        
+    </script>
+
+    <!--
+     <script src="https://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+     -->
+    <!--播放视频插件
+    <script src="js/ckplayer/ckplayer.js"></script>
+    -->
+
+
+</head><!--/head-->
+
+
+<body class="homepage no-margin" oncopy="return false">
+
+
+<main ui-view style="margin:auto;width: 100%;min-width:1440px;height:100%"></main>
+
+<!--<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan style='display:none;' id='cnzz_stat_icon_1260238160'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s95.cnzz.com/z_stat.php%3Fid%3D1260238160' type='text/javascript'%3E%3C/script%3E"));</script>
+</body>-->
+
+
+<!-- <script type="text/javascript" src="http://sandbox.runjs.cn/uploads/rs/142/gjxgxu0g/qrgen.min.js"></script> -->
+
+
+<script src="js/jquery.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<!--<script src="js/unslider.min.js"></script>-->
+<script src="js/jquery.prettyPhoto.js"></script>
+<script src="js/jquery.isotope.min.js"></script>
+<script src="js/jquery.qrcode.min.js"></script>
+
+<script src="js/main.js"></script>
+<script src="js/wow.min.js"></script>
+
+<script src="js/lib/angular/angular.js"></script>
+
+<script src="js/lib/angular-animate/angular-animate.min.js"></script>
+<script src="js/lib/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+<script src="js/lib/angular-i18n/angular-locale_zh-cn.js"></script>
+<script src="js/lib/angular-ui-router/angular-ui-router.js"></script>
+<script src="js/lib/angular-ui-router/angular-ui-router.min.js"></script>
+<script src="js/lib/angular-ui-utils/ui-utils.min.js"></script>
+<script src="js/lib/flat-ui/flat-ui.min.js"></script>
+<script src="js/lib/ladda/ladda.min.js"></script>
+<script src="js/lib/ngprogress/ngProgress.min.js"></script>
+<script src="js/lib/spin.js/spin.js"></script>
+<script src="js/lib/less/less.js"></script>
+<script src="js/lib/lodash/lodash.min.js"></script>
+<script src="js/lib/restangular/restangular.min.js"></script>
+<script src="js/lib/at-table/angular-table.min.js"></script>
+<script src="js/lib/nsPopover/nsPopover.js"></script>
+
+<link rel="stylesheet" href="js/lib/angular-ui-tree/dist/angular-ui-tree.min.css">
+<script type="text/javascript" src="js/lib/angular-ui-tree/dist/angular-ui-tree.js"></script>
+<script src="js/lib/ng-file-upload/dist/ng-file-upload.min.js"></script>
+<script src="js/lib/ng-file-upload/dist/ng-file-upload-shim.min.js"></script>
+
+<link rel="stylesheet" href="js/lib/angular-summernote/dist/summernote.css">
+<script src="js/lib/angular-summernote/dist/summernote.min.js"></script>
+<script src="js/lib/angular-summernote/dist/angular-summernote.min.js"></script>
+<script src="//cdn.bootcss.com/summernote/0.8.1/lang/summernote-zh-CN.min.js"></script>
+
+
+<!--<script src='js/lib/angular-wysiwyg/demo/scripts/bootstrap-colorpicker-module.js'></script>-->
+<!--<script src='js/lib/angular-wysiwyg/src/angular-wysiwyg.js'></script>-->
+
+
+<link rel="stylesheet" type="text/css" href="js/lib/DateTimePicker/jquery.datetimepicker.css"/>
+<script src="js/lib/DateTimePicker/jquery.datetimepicker.js"></script>
+<script src="js/lib/nav-search/classie.js"></script>
+<script src="js/lib/nav-search/uisearch.js"></script>
+
+<script src="js/dependencies/bootstrap-tagsinput-angular.js"></script>
+<script src="js/dependencies/jwplayer.js"></script>
+<script src="js/dependencies/dmuploader.min.js"></script>
+
+<script src="js/teasale/app.js"></script>
+<script src="js/teasale/cover_auth.js"></script>
+<script src="js/teasale/address.js"></script>
+
+
+<script src="js/teasale/controllers/master.js"></script>
+<script src="js/teasale/controllers/home.js"></script>
+<script src="js/teasale/controllers/main.js"></script>
+<script src="js/teasale/controllers/login.js"></script>
+<script src="js/teasale/controllers/register.js"></script>
+<script src="js/teasale/controllers/findpass.js"></script>
+<script src="js/teasale/controllers/detail.js"></script>
+<script src="js/teasale/controllers/list.js"></script>
+<script src="js/teasale/controllers/cart.js"></script>
+<script src="js/teasale/controllers/purchase.js"></script>
+<script src="js/teasale/controllers/immebuy.js"></script>
+
+<script src="js/teasale/controllers/user/user.js"></script>
+<script src="js/teasale/controllers/user/userinfo.js"></script>
+<script src="js/teasale/controllers/user/order.js"></script>
+<script src="js/teasale/controllers/user/charge.js"></script>
+<script src="js/teasale/controllers/user/comment.js"></script>
+<script src="js/teasale/controllers/user/userfund.js"></script>
+<script src="js/teasale/controllers/user/usersource.js"></script>
+<script src="js/teasale/controllers/user/changepass.js"></script>
+
+<script src="js/teasale/controllers/crowdfund/fund.js"></script>
+<script src="js/teasale/controllers/crowdfund/fundlist.js"></script>
+<script src="js/teasale/controllers/crowdfund/funddetail.js"></script>
+<script src="js/teasale/controllers/crowdfund/fundenroll.js"></script>
+
+<script src="js/teasale/controllers/crowdsource/addsource.js"></script>
+<script src="js/teasale/controllers/crowdsource/sourcelist.js"></script>
+<script src="js/teasale/controllers/crowdsource/modifysource.js"></script>
+
+</html>

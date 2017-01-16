@@ -1,0 +1,65 @@
+<div ng-include="'views/left-frame.html'"></div>
+<div class="content" >
+
+    <div class="header">
+        <h1 class="page-title">价格预测</h1>
+        <ul class="breadcrumb">
+            <li><a href="#!/home">主页</a> </li>
+            <li class="active">价格预测</li>
+        </ul>
+    </div>
+
+    <div class="main-content">
+
+        <!--<p>尚未填数据</p>-->
+        <!--<img src="images/价格图.jpeg" style="width:429px;height:273px" align="center">-->
+        <div ng-repeat="row in rowCollection">
+            <div class = "row" style="margin-top: 5%;">
+                <div class="col-lg-2 col-sm-12">
+                    <b>种类:</b>&nbsp;&nbsp;{{row.teaType}}<br>
+                    <b>省份:</b>&nbsp;&nbsp;{{row.teaProvince}}<br>
+                    <b>星级:</b>&nbsp;&nbsp;{{row.teaMark}}星<br>
+                    <!--<img ng-src="{{row.teaMark | starImg}}" style="width: 6%"><br>-->
+                </div>
+                <div class="col-lg-2 col-sm-12" style="margin-left: -5%;">
+                    <img ng-src="{{row.teaMark | starImg}}" style="width: 40%"><br>
+                </div>
+                <div class="col-lg-4 col-sm-12" style="margin-left: -5%;">
+                    <canvas class="chart chart-line" chart-data="row.data" chart-labels="labels"
+                        chart-series="row.teaType" chart-click="onClick" ></canvas>
+                </div>
+                <div class="col-lg-4 col-sm-12" style="margin-left: 5%">
+                    <b>预期时间:</b>&nbsp;&nbsp;2016年1月<br>
+                    <b>预期价格:</b>&nbsp;&nbsp;{{row.predictPrice | number: 0}}元/500克
+                </div>
+            </div>
+            <hr />
+
+        </div>
+
+<!--<div>-->
+    <!--test-->
+    <!--<canvas class="chart chart-line" chart-data="testData1" chart-labels="labels"-->
+            <!--chart-series="series" chart-options="options"></canvas>-->
+    <!--<canvas class="chart chart-line" chart-data="testData2" chart-labels="labels"-->
+            <!--chart-series="series" chart-options="options"></canvas>-->
+    <!--<canvas class="chart chart-line" chart-data="testData3" chart-labels="labels"-->
+            <!--chart-series="series" chart-options="options"></canvas>-->
+    <!--<canvas class="chart chart-line" chart-data="testData4" chart-labels="labels"-->
+            <!--chart-series="series" chart-options="options"></canvas>-->
+    <!--<canvas class="chart chart-line" chart-data="testData5" chart-labels="labels"-->
+            <!--chart-series="series" chart-options="options"></canvas>-->
+    <!--<canvas class="chart chart-line" chart-data="testData6" chart-labels="labels"-->
+            <!--chart-series="series" chart-options="options"></canvas>-->
+    <!--<canvas class="chart chart-line" chart-data="testData7" chart-labels="labels"-->
+            <!--chart-series="series" chart-options="options"></canvas>-->
+    <!--<canvas class="chart chart-line" chart-data="testData8" chart-labels="labels"-->
+            <!--chart-series="series" chart-options="options"></canvas>-->
+<!--</div>-->
+
+
+
+    </div>
+
+    <div ng-include="'views/footer.html'"></div>
+</div>

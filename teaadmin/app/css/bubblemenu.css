@@ -1,0 +1,26 @@
+#mainBubble {
+    background: #fff;
+    border: 0;
+    /*border: solid 1px #ddd;*/
+    box-shadow: 0 0 4px rgba(0,0,0,0);
+    font: 10px sans-serif;
+    height:400px;
+    /*margin-left: 10%;*/
+    /*pre css*/ /*height: 800px;*/
+
+
+    position: relative;
+    width: 70%;
+}
+
+#mainBubble svg {
+    left: 0;
+    position: absolute;
+    top: 0;
+}
+
+#mainBubble circle.topBubble {
+    fill: #aaa;
+    stroke: #666;
+    stroke-width: 1.5px;
+}

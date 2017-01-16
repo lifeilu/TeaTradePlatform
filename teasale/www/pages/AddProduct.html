@@ -1,0 +1,95 @@
+<ion-view hide-nav-bar="true">
+	<ion-header-bar align-title="center" class="my-nav-bar bar-positive">
+		<button class="button button-clear" ui-sref="tabs.product" nav-direction="back">
+			<i class="lty-icon ion-android-arrow-back"></i>
+		</button>
+		<h1 class="title">新增产品</h1>
+	</ion-header-bar>
+	<ion-content>
+		<div style="margin-right: auto; margin-left: auto; width: 90%; padding-bottom: 5%">
+			<!--<img ng-src="{{portrait}}" style="position:absolute; width: 80px; height: 80px; left:75%" alt="上传产品图片">-->
+			<div class="green-bottom-border register-wrapper">
+				<span>产品类型:</span>
+				<select style="height: 40px" ng-model="newProductType.type" ng-options="productType.name for productType in productTypes">
+					<!--<option ng-repeat="productType in productTypes" ng-selected="$index == 0">-->
+						<!--{{productType.name}}-->
+					<!--</option>-->
+				</select>
+			</div>
+			<div class="green-bottom-border register-wrapper">
+				<span>产品名:</span>
+				<input type="text" placeholder="例如: 顶级西湖龙井" ng-model="newProductInfo.name">
+			</div>
+			<div class="green-bottom-border register-wrapper">
+				<span>描述:</span>
+				<input type="text" placeholder="例如: 龙井养生益气" ng-model="newProductInfo.remark">
+			</div>
+			<div class="green-bottom-border register-wrapper" >
+				<span>质量等级:</span>
+				<!--<div class="item item-input item-select" style="display: inline-block">-->
+				<select style="height: 40px" ng-model="newProductInfo.level">
+					<option value="1" ng-selected="true">一般</option>
+					<option value="2" >中等</option>
+					<option value="3" >上等</option>
+				</select>
+				<!--</div>-->
+			</div>
+			<div class="green-bottom-border register-wrapper">
+				<span>产地:</span>
+				<input select-address p="p1" c="c1" a="a1" d="d1" ng-model="newProductInfo.locality" placeholder="请选择地址" type="text">
+			</div>
+			<!--<div class="green-bottom-border register-wrapper" >-->
+				<!--<span>计量单位:</span>-->
+				<!--&lt;!&ndash;<div class="item item-input item-select" style="display: inline-block">&ndash;&gt;-->
+				<!--<select style="height: 40px" ng-model="newProductInfo.unit" ng-value="1">-->
+					<!--<option value="斤" >千克</option>-->
+					<!--<option value="两" >斤</option>-->
+					<!--<option value="3" >克</option>-->
+				<!--</select>-->
+				<!--&lt;!&ndash;</div>&ndash;&gt;-->
+			<!--</div>-->
+			<div class="green-bottom-border register-wrapper">
+				<span>库存:</span>
+				<input type="number" min="0" placeholder="单位:两" ng-model="newProductInfo.stock">
+			</div>
+			<div class="green-bottom-border register-wrapper">
+				<span>起售数量:</span>
+				<input type="number" min="0" placeholder="单位:两" ng-model="newProductInfo.startNum">
+			</div>
+			<div class="green-bottom-border register-wrapper">
+				<span>单价:</span>
+				<input type="number" min="0" step="0.001" placeholder="元/两" ng-model="newProductInfo.price">
+			</div>
+			<div class="green-bottom-border register-wrapper">
+				<span>折扣:</span>
+				<input type="number" min="0" step="0.01" placeholder="0~1之间,最多2位小数" ng-model="newProductInfo.discount">
+			</div>
+			<div class="green-bottom-border register-wrapper">
+				<span>发货间隔:</span>
+				<input type="number" min="0" placeholder="单位:天" ng-model="newProductInfo.deliverLimit">
+			</div>
+			<div class="green-bottom-border register-wrapper">
+				<span style="padding-bottom: 11px">是否包邮:</span>
+				<ion-toggle ng-model="newProductInfo.isFree" ng-true-value="1" ng-false-value="0">
+				</ion-toggle>
+			</div>
+			<div class="green-bottom-border register-wrapper" ng-show="newProductInfo.isFree == 0">
+				<span>邮费:</span>
+				<input type="number" min="0" placeholder="大于0,最多2位小数, 单位:元" ng-model="newProductInfo.postage">
+			</div>
+			<!--<div>-->
+				<!--<li class="item item-toggle">-->
+					<!--HTML5-->
+					<!--<label class="toggle toggle-positive">-->
+						<!--<input type="checkbox" checked="">-->
+						<!--<div class="track">-->
+							<!--<div class="handle"></div>-->
+						<!--</div>-->
+					<!--</label>-->
+				<!--</li>-->
+			<!--</div>-->
+			<div style="height: 20px; margin-top: 2%; color:red" ng-show="errorAddProduct.flag" ><li>{{errorAddProduct.info}}</li></div>
+			<button class="register-wrapper login-button button button-balanced my-balanced" ng-click="addNewProduct()" ng-style="{'margin-top': (errorAddProduct.flag?'3%':'5%')}">提交</button>
+		</div>
+	</ion-content>
+</ion-view>

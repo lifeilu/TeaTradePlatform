@@ -1,0 +1,20 @@
+<form name="userForm" style = "background-color: #fafafa;" ng-submit="submit()" novalidate>
+  <div class="modal-header">
+    <button type="button" class="close" ng-click="$dismiss()">×</button>
+    <h2>充值</h2>
+  </div>
+  <div class="modal-body cover-modal" style = "padding: 5px 20px;">
+    <div class="row cover-modal-row cover-top">
+      <div class="col-md-12">
+        <div class="form-group" >
+          金额:
+          <input type="text" id="firstname" data-ng-model="money" placeholder="">
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-wuxia" ng-click="$dismiss()">取消</button>
+    <button type="submit" class="btn btn-wuxia">确认</button>
+  </div>
+</form>

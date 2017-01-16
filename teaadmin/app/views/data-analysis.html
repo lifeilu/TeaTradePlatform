@@ -1,0 +1,100 @@
+<div ng-include="'views/left-frame.html'"></div>
+<div class="content" >
+
+    <div class="header">
+        <h1 class="page-title">数据分析</h1>
+        <ul class="breadcrumb">
+            <li><a href="#!/home">主页</a> </li>
+            <li class="active">本站总销量统计</li>
+        </ul>
+    </div>
+
+    <div class="main-content">
+        <!--<p>本站总销量统计</p>-->
+        <div class="row">
+            <div class="col-lg-6">
+                <p>省份统计</p>
+                <div>
+                    <canvas class="chart chart-pie" chart-data="proTotalNum" chart-labels="proNames"
+                            chart-series="series" chart-options="options"></canvas>
+                </div>
+                <hr style="border-top: 1px solid rgba(255, 255, 255, .15);"/>
+                <table st-table="displayedCollection3" st-safe-src="rowCollection" class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th st-sort="province" style="width: 10%">省份</th>
+                        <!--<th st-sort="productName">产品类型名称</th>-->
+                        <th st-sort="number" style="text-align: right">销量</th>
+                        <th st-sort="number" style="width: 45%;text-align: right;">占比</th>
+                        <!--<th style="width: 3.5em;">管理</th>-->
+                    </tr>
+
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="row in displayedCollection3">
+                        <td>{{row.province }}</td>
+                        <!--<td>{{row.productName}}</td>-->
+                        <td style="text-align: right">{{row.number}}两</td>
+                        <td style="text-align: right">{{ 100*row.number /sumPrice |number:0}}%</td>
+                        <!--<td><a href="" ng-click=""><i class="fa fa-pencil"></i></a></td>-->
+                    </tr>
+
+                    </tbody>
+                    <tfoot>
+                    <tr>
+                        <td colspan="3" class="text-center">
+                            <div st-pagination="" st-items-by-page="itemsByPage" st-displayed-pages="5"></div>
+                        </td>
+                    </tr>
+                    </tfoot>
+                </table>
+            </div>
+
+            <div class="col-lg-6">
+                <p>茶农统计</p>
+                <div>
+                    <canvas class="chart chart-pie" chart-data="totalNum" chart-labels="names"
+                            chart-series="series" chart-options="options"></canvas>
+                </div>
+                <hr style="border-top: 1px solid rgba(255, 255, 255, .15);"/>
+                <!--<p>表格显示</p>-->
+                <table st-table="displayedCollection4" st-safe-src="rowCollection2" class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th st-sort="teaSalerId" style="width: 30%">茶农序号</th>
+                        <th st-sort="teaSalerName" style="width: 20%">茶农姓名</th>
+                        <!--<th st-sort="productName">产品名称</th>-->
+                        <th st-sort="number" style="text-align: right">销量</th>
+                        <th st-sort="number" style="width: 30%;text-align: right;">占比</th>
+                        <!--<th style="width: 3.5em;">管理</th>-->
+                    </tr>
+
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="row in displayedCollection4">
+                        <td>{{row.teaSalerId }}</td>
+                        <td>{{row.teaSalerName}}</td>
+                        <!--<td>{{row.productName}}</td>-->
+                        <td style="text-align: right;">{{row.number}}两</td>
+                        <td style="text-align: right;">{{100*row.number/sumSalePrice | number:0}}%</td>
+                        <!--<td><a href="" ng-click=""><i class="fa fa-pencil"></i></a></td>-->
+                    </tr>
+
+                    </tbody>
+                    <tfoot>
+                    <tr>
+                        <td colspan="4" class="text-center">
+                            <div st-pagination="" st-items-by-page="itemsByPage" st-displayed-pages="5"></div>
+                        </td>
+                    </tr>
+                    </tfoot>
+                </table>
+                <!--<canvas class="chart chart-line" chart-data="data" chart-labels="labels"-->
+                                <!--chart-series="series" chart-colors="colors" chart-click="onClick" ></canvas>-->
+
+                </div>
+            </div>
+        <div><a href="#!/barchart" style="margin-left: 2%">更多图表</a></div>
+    </div>
+    <div ng-include="'views/footer.html'"></div>
+</div>

@@ -1,0 +1,86 @@
+<div ng-include="'views/left-frame.html'"></div>
+<div class="content" >
+    <div class="header">
+        <h1 class="page-title">众筹订单管理</h1>
+        <ul class="breadcrumb">
+            <li><a href="#!/home">主页</a> </li>
+            <li class="active">众筹订单管理</li>
+        </ul>
+    </div>
+    <div class="main-content">
+        <table st-table="displayedCollection" st-safe-src="rowCollection" class="table table-striped" >
+            <thead>
+            <tr> <th st-sort="id" style="width: 7%">订单ID</th>
+                <th st-sort="createDate" style="width: 10%">创建时间</th>
+                <th st-sort="teaSaler.name" style="width: 8%">卖家姓名</th>
+                <th st-sort="teaSaler.tel" style="width: 8%">卖家电话</th>
+                <th st-sort="crowdFunding.product.name" style="width: 10%">产品名称</th>
+                <th st-sort="name">收货人</th>
+                <th st-sort="tel">收货电话</th>
+                <th st-sort="address">收货地址</th>
+                <th st-sort="totalPrice" style="text-align: right">订单总价</th>
+                <th st-sort="state" style="width: 8%;text-align: right">订单状态</th>
+                <!--<th st-sort="isSend" style="width: 8%">是否发货</th>-->
+                <!--<th st-sort="isConfirm" style="width: 8%">确认收获</th>-->
+                <!--<th st-sort="isComment" style="width: 8%">是否评价</th>-->
+                <!--<th st-sort="isrefund_state" style="width: 8%">是否支付</th>-->
+
+            </tr>
+
+
+            <tr>
+                <!--<th colspan="2"></th>-->
+                <th colspan="2"><input st-search="id" placeholder="订单号" class="input-sm form-control" type="search"/></th>
+                <!--<th ><input st-search="createDate" placeholder="创建时间" class="input-sm form-control" type="search"/></th>-->
+                <!--<th ><input st-search="product.teaSaler.name" placeholder="卖家姓名" class="input-sm form-control" type="search"/></th>-->
+                <th  colspan="2"><input st-search="product.teaSaler.tel" placeholder="卖家电话" class="input-sm form-control" type="search"/></th>
+                <th  colspan="2"><input st-search="name" placeholder="买家昵称" class="input-sm form-control" type="search"/></th>
+                <!--<th  colspan="2"><input st-search="orderen.tel" placeholder="收货电话" class="input-sm form-control" type="search"/></th>-->
+                <!--<th ><input st-search="totalPrice" placeholder="订单总价" class="input-sm form-control" type="search"/></th>-->
+                <!--<th ><input st-search="state" placeholder="订单状态" class="input-sm form-control" type="search"/></th>-->
+                <!--<th ><input st-search="isSend" placeholder="是否发货" class="input-sm form-control" type="search"/></th>-->
+                <!--<th ><input st-search="isConfrim" placeholder="是否确认收获" class="input-sm form-control" type="search"/></th>-->
+                <!--<th ><input st-search="isComment" placeholder="是否评价" class="input-sm form-control" type="search"/></th>-->
+                <!--<th ><input st-search="isrefund_state" placeholder="是否支付" class="input-sm form-control" type="search"/></th>-->
+                <th colspan="4"><input st-search class="input-sm form-control" placeholder="全局搜索" type="text"/></th>
+            </tr>
+
+
+            </thead>
+            <tbody>
+
+            <tr ng-repeat="row in displayedCollection">
+                <!--<td><input type="checkbox" ng-true-value="true" ng-false-value="false" ng-model="user.selected" /></td>-->
+                <td>{{row.id }}</td>
+                <td>{{row.createDate}}</td>
+
+                <td>{{row.teaSaler.name}}</td>
+                <td>{{row.teaSaler.tel}}</td>
+                <td>{{row.crowdFunding.product.name}}</td>
+                <td>{{row.name}}</td>
+                <td>{{row.tel}}</td>
+                <td>{{row.address}}</td>
+                <td style="text-align: right;">{{row.totalPrice | number:2}}元</td>
+                <td style="text-align: right;">{{row.state | myOrder}}</td>
+
+                <!--<td>{{row.isSend | mySend}}</td>-->
+                <!--<td>{{row.isConfirm  | myConfirm}}</td>-->
+                <!--<td>{{row.refund_state | myFund}}</td>-->
+            </tr>
+
+            </tbody>
+            <tfoot>
+            <tr>
+                <td colspan="3">
+                    <h3>共{{crowdFundOrderNum}}个众筹订单</h3>
+                </td>
+                <td colspan="7" class="text-center">
+                    <div st-pagination="" st-items-by-page="itemsByPage" st-displayed-pages="5"></div>
+                </td>
+            </tr>
+            </tfoot>
+        </table>
+    </div>
+    <div ng-include="'views/footer.html'"></div>
+</div>
+</div>

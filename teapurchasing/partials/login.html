@@ -1,0 +1,83 @@
+<style>
+body 
+{
+    background-image:url(/images/tea5.jpg);
+}
+</style>
+<body>
+<header class="header">
+    <nav class="navbar2 navbar2-inverse" role="banner">
+        <div class="container" style="margin:0px 0px 0px 0px; width: 100%">
+            <div class="row">
+                <div class="col-sm-3 col-md-3 col-lg-3">
+                    <div class="navbar-header" >
+                        <div class="navbar-brand">
+                            <div class="col-md-4 col-xs-4 col-sm-4">
+                                <img src="images/logo.png" width="100px" height="100px" alt="tb">
+                            </div>
+                            <div class="col-md-8 col-xs-8 col-sm-8"> 
+                                <h1 style="color:#000000">&nbsp欢迎登录</h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--/.container-->
+    </nav>
+    <!--/nav-->
+</header>  
+<div class="mybox">  
+    <div class="my-login-box">
+        <div style="margin-top:40%; padding-left:15%; padding-right:15%">
+            <div class="login-content ">
+                <div class="form">
+                    <form ng-submit="$close(user)">
+                        <div class="form-group">
+                            <div class="col-xs-12  ">
+                                <div class="input-group">
+                                    <span class="input-group-addon radius-none" style="background-color: rgb(176, 195, 48);">
+                    <span class="glyphicon glyphicon-user" style="color:rgb(255,255,255)">
+                    </span>
+                                    </span>
+                                    <input type="text" id="username" name="username" class="form-control radius-none input-login" placeholder="手机号" ng-model="user.tel" required/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-xs-12 ">
+                                <div class="input-group radius-none">
+                                    <span class="input-group-addon radius-none" style="background-color: rgb(176, 195, 48);">
+                    <span class="glyphicon glyphicon-lock" style="color:rgb(255,255,255)">
+                    </span>
+                                    </span>
+                                    <input type="password" id="password" name="password" class="form-control radius-none input-login" placeholder="密码(不少于6位)" ng-model="user.password" required/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group form-actions">
+                            <div class="col-xs-12">
+                                <button id="login" ng-click="login()" type="submit" class="btn btn-primary btn-lg btn-block" style="background-color:rgb(176,195,48);text-color:rgb(255.250.255);border-radius:0px;">登 录</button>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-xs-6 link">
+                            </div>
+                            <div class="col-xs-6 link">
+                                <p class="remove-margin" style="text-align:right">
+                                    <a class="pass-div" href="findpass">
+                                        <small style="color:rgb(176,195,48);">找回密码</small>
+                                    </a>
+                                    <a class="reg-div" href="register">
+                                        <small style="color:rgb(176,195,48);">立即注册</small>
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>

@@ -1,0 +1,140 @@
+<div ng-include="'views/left-frame.html'"></div>
+
+<div class="content" >
+
+    <div class="header">
+        <h1 class="page-title">个人中心</h1>
+        <ul class="breadcrumb">
+            <li><a href="#!/home">主页</a> </li>
+            <li class="active">个人中心</li>
+        </ul>
+    </div>
+
+    <div class="main-content" >
+        <h3 style="margin-left: 1%">亲爱的管理员{{currentUser.name}}，辛苦啦～</h3><br>
+        <!--用户序号: {{currentUser.id }}<br>-->
+        <!--电话号码: {{currentUser.account.tel}}<br>-->
+        <!--创建时间: {{currentUser.createDate }}<br>-->
+        <!--系统金额: {{currentUser.account.money| number:0}}元<br>-->
+
+        <!--<div class="row">-->
+            <!--<div  class="col-lg-3">-->
+                <!--<p>用户序号</p>-->
+            <!--</div>-->
+            <!--<div  class="col-lg-6">-->
+                <!--{{currentUser.id }}-->
+            <!--</div>-->
+        <!--</div>-->
+        <!--<div class="row">-->
+            <!--<div  class="col-lg-3">-->
+                <!--<p>创建时间</p>-->
+            <!--</div>-->
+            <!--<div  class="col-lg-6">-->
+                <!--{{currentUser.createDate }}-->
+            <!--</div>-->
+        <!--</div>-->
+        <div class="row">
+            <div  class="col-lg-2">
+                <p>电话号码</p>
+            </div>
+            <div  class="col-lg-6">
+                {{currentUser.account.tel}}<br>
+            </div>
+        </div>
+
+        <div class="row">
+            <div  class="col-lg-2">
+                <p>系统金额</p>
+            </div>
+            <div  class="col-lg-2">
+                <b> {{currentUser.account.money| number:0}}&nbsp;&nbsp;元</b>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div  class="col-lg-2">
+                <span>当前头像</span><br>
+            </div>
+            <div  class="col-lg-6">
+                <img ng-src="{{currentUser.account.headURL|myImageUrl}}" style="width:30%;">
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div  class="col-lg-2">
+                <span>上传头像</span><br>
+            </div>
+            <div  class="col-lg-6">
+                <input ngf-select type="file" ng-model="myImg">
+                <br>
+                <button ng-click="addMyImg()"  class="btn btn-primary " style="width: 45%;background-color: transparent;color: black;">上传</button>
+            </div>
+        </div>
+
+        <div class="row">
+            <div  class="col-lg-2">
+                <span>修改密码</span><br>
+            </div>
+            <div  class="col-lg-6">
+                密码&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input ng-model="modify.password1" type="password" placeholder="密码"><br>
+                <!--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-->
+                确认密码<input ng-model="modify.password2" type="password" placeholder="确认密码"><br>
+                <button class="btn btn-primary" style="width: 45%;margin-top: 1%;background-color: #428bca;color: white;" ng-click="update()">提交</button>
+            </div>
+        </div>
+
+
+
+
+
+        <!--<div class="row">-->
+            <!--<div  class="col-lg-6">-->
+                <!--<div class="row">-->
+                    <!--<div  class="col-lg-6">-->
+                        <!--<span>当前头像</span><br>-->
+                    <!--</div>-->
+                    <!--<div  class="col-lg-6">-->
+                        <!--<img ng-src="{{currentUser.account.headURL|myImageUrl}}" style="width:30%;">-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--&lt;!&ndash;<img ng-src="{{$root.currentUser.account.headURL|myImageUrl}}" style="width:50px;height:50px"><br>&ndash;&gt;-->
+
+                <!--&lt;!&ndash;<br><br><br>&ndash;&gt;-->
+                <!--&lt;!&ndash;<form >&ndash;&gt;-->
+                <!--<br><br>-->
+                <!--<p>上传头像</p>-->
+                <!--<input ngf-select type="file" ng-model="myImg">-->
+                <!--<br>-->
+                <!--<button ng-click="addMyImg()"  class="btn btn-primary " style="width: 40%;background-color: #428bca;">上传</button>-->
+
+            <!--</div>-->
+            <!--<div  class="col-lg-6">-->
+                <!--用户姓名: <input  ng-model="currentUser.name" type="text"/><br>-->
+                <!--用户序号: {{currentUser.id }}<br>-->
+                <!--电话号码: {{currentUser.account.tel}}<br>-->
+                <!--创建时间: {{currentUser.createDate }}<br>-->
+                <!--系统金额: {{currentUser.account.money| number:0}}元<br>-->
+                <!--&lt;!&ndash;用户姓名: <input  ng-model="currentUser.name" type="text"/><br>&ndash;&gt;-->
+                <!--&lt;!&ndash;用户序号: {{$root.currentUser.id }}<br>&ndash;&gt;-->
+                <!--&lt;!&ndash;电话号码: {{$root.currentUser.account.tel}}<br>&ndash;&gt;-->
+                <!--&lt;!&ndash;创建时间: {{$root.currentUser.createDate }}<br>&ndash;&gt;-->
+                <!--&lt;!&ndash;系统金额: {{$root.currentUser.money}}元<br>&ndash;&gt;-->
+                <!--&lt;!&ndash;是否可用: {{$root.currentUser.alive}} <br>&ndash;&gt;-->
+                <!--<br><br>-->
+                <!--修改密码<br>-->
+                <!--密码&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input ng-model="modify.password1" type="password" placeholder="密码"/><br>-->
+                <!--确认密码<input ng-model="modify.password2" type="password" placeholder="确认密码"／><br>-->
+                <!--<button class="btn btn-primary" style="width: 45%;margin-top: 1%;background-color: #428bca;color: white;" ng-click="update()">提交</button>-->
+                <!--<br>-->
+                <!--&lt;!&ndash;<button class="btn btn-primary" style="width: 45%;margin-top: 1%;background-color: rgba(255, 255, 255, .15);color: black;" ng-click="logout()">注销</button>&ndash;&gt;-->
+            <!--</div>-->
+        <!--</div>-->
+
+
+
+
+    </div>
+    <div ng-include="'views/footer.html'"></div>
+</div>

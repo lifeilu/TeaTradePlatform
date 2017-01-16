@@ -1,0 +1,237 @@
+<div ng-include="'views/left-frame.html'"></div>
+
+<div class="content" ng-show="orderShow">
+
+    <div class="header">
+    <h1 class="page-title">普通订单管理</h1>
+    <ul class="breadcrumb">
+    <li><a href="#!/home">主页</a> </li>
+    <li class="active">订单管理</li>
+    </ul>
+    </div>
+    <div class="main-content" >
+
+        <!--<div>-->
+            <!--<h3>订单查看</h3>-->
+            <!--<form >-->
+                <!--订单编号&nbsp;<input type="text" style="height: 26px;width: 140px"  placeholder="01" ng-model ="id">-->
+                <!--&nbsp;-->
+                <!--订单状态&nbsp;-->
+                <!--<select>-->
+                    <!--<option value="volvo">已完成</option>-->
+                    <!--<option value="saab">待付款</option>-->
+                    <!--<option value="opel">待发货</option>-->
+                    <!--<option value="audi">待确认</option>-->
+                <!--</select>-->
+                <!--&nbsp;&nbsp;-->
+                <!--卖家姓名&nbsp;<input type="text" style="height: 26px;width: 100px"  placeholder="1" ng-model ="teaSaler.name">-->
+                <!--<br>-->
+
+                <!--创建时间&nbsp;<input type="date" style="height: 26px;width: 140px" placeholder="2016/11/20">-->
+                <!--&nbsp;-->
+                <!--茶叶种类&nbsp;-->
+                <!--<select>-->
+                    <!--<option value="volvo">红茶</option>-->
+                    <!--<option value="saab">绿茶</option>-->
+                    <!--<option value="opel">乌龙茶</option>-->
+                    <!--<option value="audi">普洱茶</option>-->
+                <!--</select>-->
+                <!--&nbsp;&nbsp;-->
+                <!--买家姓名&nbsp;<input type="text" style="height: 26px;width: 100px"  placeholder="1" ng-model ="customer.name">-->
+                <!--<br>-->
+                <!--<button ng-click="search()"  class="btn btn-primary ">搜索</button>-->
+            <!--</form>-->
+        <!--</div>-->
+            <!--<img src="images/order.png" style="width:200px;height:200px" align="center">-->
+
+            <table st-table="displayedCollection" st-safe-src="rowCollection" class="table table-striped" >
+                <thead>
+                <tr>
+                    <!--<th>是否选中</th>-->
+                    <!--<th>订单编号</th>-->
+                    <!--<th>创建时间</th>-->
+
+                    <!--<th>卖家姓名</th>-->
+                    <!--<th>卖家电话</th>-->
+                    <!--<th>买家昵称</th>-->
+                    <!--<th>收货地址</th>-->
+                    <!--<th>收货电话</th>-->
+                    <!--<th>订单总价</th>-->
+                    <!--<th>订单状态</th>-->
+                    <!--<th>是否发货</th>-->
+                    <!--<th>是否确认收货</th>-->
+                    <!--<th>是否评价</th>-->
+                    <!--<th>是否支付</th>-->
+                    <!--<th style="width: 3.5em;"></th>-->
+
+                    <!--<th>是否选中</th>-->
+                    <th st-sort="id" style="width: 7%">订单ID</th>
+                    <th st-sort="createDate" style="width: 10%">创建时间</th>
+                    <th st-sort="product.teaSaler.name" style="width: 8%">卖家姓名</th>
+                    <th st-sort="product.teaSaler.tel" style="width: 8%">卖家电话</th>
+                    <th st-sort="orderen.customer.nickname" style="width: 8%">买家昵称</th>
+                    <th style="width: 20%">收货地址</th>
+                    <th st-sort="orderen.tel">收货电话</th>
+                    <th st-sort="totalPrice" style="width: 8%;text-align: right">订单总价</th>
+                    <th st-sort="state" style="width: 8%">订单状态</th>
+                    <!--<th st-sort="isSend" style="width: 8%">是否发货</th>-->
+                    <!--<th st-sort="isConfirm" style="width: 8%">确认收获</th>-->
+                    <!--<th st-sort="isComment" style="width: 8%">是否评价</th>-->
+                    <!--<th st-sort="isrefund_state" style="width: 8%">是否支付</th>-->
+                    <th style="width: 5%;">详情</th>
+
+                </tr>
+
+
+                <tr>
+                    <!--<th colspan="2"></th>-->
+                    <th colspan="2"><input st-search="id" placeholder="订单号" class="input-sm form-control" type="search"/></th>
+                    <!--<th ><input st-search="createDate" placeholder="创建时间" class="input-sm form-control" type="search"/></th>-->
+                    <!--<th ><input st-search="product.teaSaler.name" placeholder="卖家姓名" class="input-sm form-control" type="search"/></th>-->
+                    <th  colspan="2"><input st-search="product.teaSaler.tel" placeholder="卖家电话" class="input-sm form-control" type="search"/></th>
+                    <th  colspan="2"><input st-search="orderen.customer.nickname" placeholder="买家昵称" class="input-sm form-control" type="search"/></th>
+                    <!--<th  colspan="2"><input st-search="orderen.tel" placeholder="收货电话" class="input-sm form-control" type="search"/></th>-->
+                    <!--<th ><input st-search="totalPrice" placeholder="订单总价" class="input-sm form-control" type="search"/></th>-->
+                    <!--<th ><input st-search="state" placeholder="订单状态" class="input-sm form-control" type="search"/></th>-->
+                    <!--<th ><input st-search="isSend" placeholder="是否发货" class="input-sm form-control" type="search"/></th>-->
+                    <!--<th ><input st-search="isConfrim" placeholder="是否确认收获" class="input-sm form-control" type="search"/></th>-->
+                    <!--<th ><input st-search="isComment" placeholder="是否评价" class="input-sm form-control" type="search"/></th>-->
+                    <!--<th ><input st-search="isrefund_state" placeholder="是否支付" class="input-sm form-control" type="search"/></th>-->
+                    <th colspan="4"><input st-search class="input-sm form-control" placeholder="全局搜索" type="text"/></th>
+                </tr>
+
+
+                </thead>
+                <tbody>
+
+                <tr ng-repeat="row in displayedCollection">
+                    <!--<td><input type="checkbox" ng-true-value="true" ng-false-value="false" ng-model="user.selected" /></td>-->
+                    <td>{{row.id }}</td>
+                    <td>{{row.createDate}}</td>
+                    <td>{{row.teaSaler.name}}</td>
+                    <td>{{row.teaSaler.tel}}</td>
+                    <td>{{row.customer.nickname}}</td>
+                    <td>{{row.address}}</td>
+                    <td>{{row.tel}}</td>
+                    <td style="text-align: right;">{{row.totalPrice | number:2}}元</td>
+                    <td>{{row.state | myOrder}}</td>
+                    <!--<td>{{row.isSend | mySend}}</td>-->
+                    <!--<td>{{row.isConfirm  | myConfirm}}</td>-->
+                    <!--<td>{{row.isComment | myComment}}</td>-->
+                    <!--<td>{{row.refund_state | myFund}}</td>-->
+                    <td style="text-align: center">
+                        <a href="" ng-click="searchById(row.id)"><img src="../images/see.png" style="width: 60%;"></a>
+                        <!--<a href="" role="button" ng-click="deleteOrder(row)" data-toggle="modal"><i class="fa fa-trash-o"></i></a>-->
+                    </td>
+                </tr>
+
+                </tbody>
+                <tfoot>
+                <tr>
+                    <td colspan="3">
+                        <h3>共{{orderNum}}个普通订单</h3>
+                    </td>
+                    <td colspan="7" class="text-center">
+                        <div st-pagination="" st-items-by-page="itemsByPage" st-displayed-pages="5"></div>
+                    </td>
+                </tr>
+                </tfoot>
+            </table>
+
+    </div>
+    <div ng-include="'views/footer.html'"></div>
+</div>
+
+
+    <div class="content" ng-show="orderItemShow">
+        <div class="header">
+            <h1 class="page-title">普通订单详情</h1>
+            <ul class="breadcrumb">
+                <li><a href="#!/home">主页</a> </li>
+                <li><a href="" ng-click="changeView()">订单管理</a> </li>
+                <li class="active">订单详情</li>
+            </ul>
+        </div>
+
+    <div class="main-content">
+
+    <!--<div>-->
+        <!--<h3>订单详情</h3>-->
+    <!--</div>-->
+    <!--<img src="images/order.png" style="width:200px;height:200px" align="center">-->
+
+
+    <table st-table="displayedCollection2" st-safe-src="rowCollection2" class="table table-striped">
+        <thead>
+        <tr>
+            <!--<th>是否选中</th>-->
+            <th st-sort="id">订单ID</th>
+            <th st-sort="product.name">产品名称</th>
+
+            <!--<th>创建时间</th>-->
+            <th>产品图片</th>
+
+            <th st-sort="product.teaSaler.name">卖家姓名</th>
+            <th st-sort="product.teaSaler.tel">卖家电话</th>
+
+            <th st-sort="orderen.customer.nickname">买家昵称</th>
+            <th>收货地址</th>
+            <th st-sort="orderen.tel">收货电话</th>
+
+            <th st-sort="num">订单数量</th>
+            <th st-sort="totalPrice">订单总价</th>
+            <!--<th st-sort="alive">是否有效</th>-->
+            <!--<th st-sort="isComment">是否评价</th>-->
+
+
+            <!--<th style="width: 3.5em;">管理</th>-->
+        </tr>
+
+        </thead>
+        <tbody>
+        <tr ng-repeat="row in displayedCollection2">
+            <!--<td><input type="checkbox" ng-true-value="true" ng-false-value="false" ng-model="user.selected" /></td>-->
+            <td>{{row.id }}</td>
+            <td>{{row.product.name}}</td>
+
+            <!--<td>{{row.product.createDate | date}}</td>-->
+
+            <td><img ng-src="{{row.product.url|myImageUrl}}" style="width:50px;height:50px"></td>
+
+            <td>{{row.product.teaSaler.name}}</td>
+            <td>{{row.product.teaSaler.tel}}</td>
+
+            <td>{{row.orderen.customer.nickname}}</td>
+            <td>{{row.orderen.address}}</td>
+
+            <td>{{row.orderen.tel}}</td>
+
+
+            <td>{{row.num}}</td>
+            <td>{{row.totalPrice | number:2}}元</td>
+            <!--<td>{{row.alive}}</td>-->
+            <!--<td>{{row.isComment}}</td>-->
+
+            <!--<td><a href="" ng-click=""><i class="fa fa-pencil"></i></a></td>-->
+        </tr>
+
+        </tbody>
+        <tfoot>
+        <tr>
+            <td colspan="3">
+                <h3>共{{orderItemNum}}个订单项</h3>
+            </td>
+            <td colspan="7" class="text-center">
+                <div st-pagination="" st-items-by-page="itemsByPage" st-displayed-pages="5"></div>
+            </td>
+        </tr>
+        </tfoot>
+
+    </table>
+
+
+
+</div>
+
+    <div ng-include="'views/footer.html'"></div>
+</div>

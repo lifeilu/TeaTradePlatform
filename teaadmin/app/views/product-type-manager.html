@@ -1,0 +1,235 @@
+<div ng-include="'views/left-frame.html'"></div>
+
+<div class="content" ng-show="listShow">
+    <!--<div ng-show="listShow">-->
+    <div class="header">
+        <h1 class="page-title">茶产品类型管理</h1>
+        <ul class="breadcrumb">
+            <li><a href="#!/home">主页</a> </li>
+            <li class="active">茶产品类型管理</a></li>
+        </ul>
+        <div>
+        <!--<div class="btn-toolbar list-toolbar" >-->
+            <img src="images/add.png" ng-click="changeView()" style="margin-top:2%;width:50px;height:50px" align="right">
+            <!--<div class="btn-group"></div>-->
+        </div>
+    </div>
+    <div class="main-content">
+        <!--<div>-->
+            <!--<h3>茶产品类型查询</h3>-->
+                <!--&lt;!&ndash;<br>&ndash;&gt;-->
+                <!--&lt;!&ndash;<button ng-click="searchProduct()"  class="btn btn-primary ">搜索</button>&ndash;&gt;-->
+        <!--</div>-->
+        <div >
+            <!--<div class="btn-toolbar list-toolbar" >-->
+                <!--<img src="images/add.png" ng-click="changeView()" style="width:50px;height:50px" align="right">-->
+                <!--<div class="btn-group"></div>-->
+            <!--</div>-->
+        </div>
+
+        <table st-table="displayedCollection" st-safe-src="rowCollection" class="table table-striped">
+            <thead>
+            <tr>
+                <!--<th>是否选中</th>-->
+                <th st-sort="id" style="width: 8%">产品ID</th>
+                <th st-sort="name" style="width: 8%">名称</th>
+                <!--<th st-sort="state" style="width: 8%">是否可用</th>-->
+                <!--<th st-sort="alive" style="width: 8%">是否删除</th>-->
+                <th style="width: 8%">图片显示</th>
+                <th>描述</th>
+                <th style="width: 3.5em;">销量</th>
+                <th style="width: 3.5em;">删除</th>
+            </tr>
+            <tr>
+                <!--<th colspan="2"><input st-search="id" placeholder="产品ID" class="input-sm form-control" type="search"/></th>-->
+                <th colspan="3"><input st-search="name" placeholder="产品名称" class="input-sm form-control" type="search"/></th>
+                <!--<th ><input st-search="state" placeholder="是否可用" class="input-sm form-control" type="search"/></th>-->
+                <!--<th ><input st-search="alive" placeholder="是否删除" class="input-sm form-control" type="search"/></th>-->
+                <th colspan="3"><input st-search class="input-sm form-control" placeholder="全局搜索" type="text"/></th>
+            </tr>
+
+
+            </thead>
+            <tbody>
+            <tr ng-repeat="row in displayedCollection">
+                <!--<td><input type="checkbox" ng-true-value="true" ng-false-value="false" ng-model="user.selected" /></td>-->
+                <td>{{row.id }}</td>
+                <td>{{row.name}}</td>
+                <!--<td>{{row.state}}</td>-->
+                <!--<td>{{row.alive | myAlive}}</td>-->
+                <td><img ng-src="{{row.url|myImageUrl}}" style="width:50px;height:50px"></td>
+                <td>{{row.descript}}</td>
+
+
+                <td style="text-align: center">
+                    <a href="" ng-click="seeSale(row)"><img src="../images/see.png" style="width: 60%;"></a>
+                </td>
+                <td style="text-align: center">
+                    <a href="" role="button" ng-click="typeUpdate(row)" data-toggle="modal"><i class="fa fa-trash-o"></i></a>
+                </td>
+            </tr>
+
+            </tbody>
+            <tfoot>
+            <tr>
+                <td colspan="3">
+                    <h3>共{{productTypeNum}}种产品类型</h3>
+                </td>
+                <td colspan="3" class="text-center">
+                    <div st-pagination="" st-items-by-page="itemsByPage" st-displayed-pages="5"></div>
+                </td>
+            </tr>
+            </tfoot>
+        </table>
+
+    </div>
+    <div ng-include="'views/footer.html'"></div>
+</div>
+
+
+
+<div class="content" ng-show="addShow">
+    <div class="header">
+        <h1 class="page-title">茶产品类型添加</h1>
+        <ul class="breadcrumb">
+            <li><a href="#!/home">主页</a> </li>
+            <li><a href="" ng-click="changeView2()">茶产品类型管理</a> </li>
+            <li class="active">茶产品类型添加</a></li>
+        </ul>
+    </div>
+        <div class="main-content">
+            <form >
+                产品类型：<input type="text" style="height: 26px;width: 140px"  placeholder="红茶" ng-model ="product.name"><br>
+                描述信息：<input type="text" style="height: 26px;width: 140px;"  placeholder="红茶的描述信息" ng-model ="product.descript">
+                <br>
+                上传图片：<input ngf-select type="file" ng-model="product.img"><br>
+                <br>
+                <button ng-click="addProduct()"  class="btn btn-primary " style="background-color: #428bca;width: 20%;">创建</button>
+            </form>
+        </div>
+            <div ng-include="'views/footer.html'"></div>
+</div>
+
+
+
+<div class="content" ng-show="saleShow">
+    <div class="header">
+        <h1 class="page-title">茶产品类型销量查看</h1>
+        <ul class="breadcrumb">
+            <li><a href="#!/home">主页</a> </li>
+            <li><a href="" ng-click="changeView3()">茶产品类型管理</a> </li>
+            <li class="active">茶产品类型销量查看</a></li>
+        </ul>
+    </div>
+    <div class="main-content">
+<div class="row">
+    <div class="col-lg-6">
+    <p>各省份的销量</p>
+    <table st-table="displayedCollection2" st-safe-src="rowCollection2" class="table table-striped">
+        <thead>
+        <tr>
+            <th st-sort="province">省份</th>
+            <th st-sort="productName">产品类型名称</th>
+            <th st-sort="number">销量</th>
+            <!--<th style="width: 3.5em;">管理</th>-->
+        </tr>
+
+        </thead>
+        <tbody>
+        <tr ng-repeat="row in displayedCollection2">
+            <td>{{row.province }}</td>
+            <td>{{row.productName}}</td>
+            <td>{{row.number}}</td>
+            <!--<td><a href="" ng-click=""><i class="fa fa-pencil"></i></a></td>-->
+        </tr>
+
+        </tbody>
+        <tfoot>
+        <tr>
+            <td colspan="3" class="text-center">
+                <div st-pagination="" st-items-by-page="itemsByPage" st-displayed-pages="5"></div>
+            </td>
+        </tr>
+        </tfoot>
+    </table>
+        <!--<div class="row">-->
+            <!--<div class="col-lg-6">-->
+                <p>图表展示</p>
+                <canvas class="chart chart-doughnut" chart-data="data" chart-labels="labels"
+                chart-series="series" chart-options="options" chart-colors="colors"></canvas>
+            <!--</div>-->
+            <!--<div class="col-lg-6">-->
+             <!--&lt;!&ndash;<div style="margin-top: 10%;margin-left: 5%;">&ndash;&gt;-->
+                <!--<a href="" ng-click="changeView5()">更多图表</a>-->
+            <!--</div>-->
+        <!--</div>-->
+    </div>
+
+    <div class="col-lg-6">
+        <p>地图展示</p>
+        <div id="allmap" style="height: 400px;width: 100%"></div><br>
+        <a href="" ng-click="changeView5()">更多图表</a>
+    </div>
+</div>
+    </div>
+    <div ng-include="'views/footer.html'"></div>
+</div>
+
+
+<div class="content" ng-show="chartShow">
+    <div class="header">
+        <h1 class="page-title">茶产品类型图表展示</h1>
+        <ul class="breadcrumb">
+            <li><a href="#!/home">主页</a> </li>
+            <li><a href="" ng-click="changeView4()">茶产品类型管理</a> </li>
+            <li><a href="" ng-click="changeView6()">茶产品类型销量查看</a> </li>
+            <li class="active">茶产品类型销量图表展示</a></li>
+        </ul>
+    </div>
+
+    <div class="main-content">
+
+        <div class="row">
+            <!--<div class="panel panel-default">-->
+            <!--<div class="panel-heading">图表展示</div>-->
+            <!--<div class="panel-body">-->
+            <div class="col-lg-6 col-sm-12">
+                <!--<canvas class="chart chart-line" chart-data="data" chart-labels="labels"-->
+                        <!--chart-series="series" chart-colors="colors" chart-click="onClick" ></canvas>-->
+
+                <canvas class="chart chart-bar" chart-data="data" chart-labels="labels"
+                        chart-series="series" chart-options="options"></canvas>
+                <hr/>
+                <canvas class="chart chart-line" chart-data="data" chart-labels="labels"
+                        chart-series="series" chart-colors="colors" chart-click="onClick" style="margin-top: 20%"></canvas>
+
+                <hr style="margin-top: 20%"/>
+
+
+                <canvas class="chart chart-radar" chart-data="data" chart-labels="labels"
+                        chart-series="series" chart-options="options"></canvas>
+
+                <!--<canvas class="chart chart-bubble" chart-data="data" chart-labels="labels"-->
+                        <!--chart-series="series" chart-options="options"></canvas>-->
+
+            </div>
+            <div class="col-lg-6 col-sm-12">
+                <canvas class="chart chart-horizontal-bar" chart-data="data" chart-labels="labels"
+                        chart-series="series" chart-options="options"></canvas>
+                <hr/>
+
+                <canvas class="chart chart-pie" chart-data="data" chart-labels="labels"
+                        chart-series="series" chart-options="options"></canvas>
+                <hr/>
+
+                <canvas class="chart chart-polar-area" chart-data="data" chart-labels="labels"
+                        chart-series="series" chart-options="options"></canvas>
+
+            </div>
+            <!--</div>-->
+            <!--</div>-->
+        </div>
+    </div>
+    <div ng-include="'views/footer.html'"></div>
+</div>
+

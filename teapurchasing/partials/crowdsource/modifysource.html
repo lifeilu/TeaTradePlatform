@@ -1,0 +1,113 @@
+<div class="container regbox">
+    <div class="my-t-register-box">
+        <div class="row">
+            <div class="">
+                <form class="form-horizontal panel-collapse collapse in" role="form">
+                    <div class="panel-body" id="registerform">
+                        <div class="reg-form">
+                            <div class="form-group row">
+                                <div class="text-center">
+                                    <h1 style="color:#000000">修改众包</h1>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="firstname" class="contrl-label reg-left label-register">每份定金
+                                    <font color="red">*</font>
+                                </label>
+                                <div class="reg-right">
+                                    <input type="number" class="form-control radius-none" style = "height: 34px;" id="firstname" data-ng-model="source.earnest" placeholder="请输入定金">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="firstname" class="contrl-label reg-left label-register">每份金额
+                                    <font color="red">*</font>
+                                </label>
+                                <div class="reg-right">
+                                    <input type="number" class="form-control radius-none" style = "height: 34px;" id="firstname" data-ng-model="source.unitMoney" placeholder="请输入金额">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="firstname" class="contrl-label reg-left label-register">每份数量
+                                    <font color="red">*</font>
+                                </label>
+                                <div class="reg-right">
+                                    <input type="number" class="form-control radius-none" id="firstname" style = "height: 34px;" data-ng-model="source.unitNum" placeholder="请输入数量">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="firstname" class="contrl-label reg-left label-register">总数量
+                                    <font color="red">*</font>
+                                </label>
+                                <div class="reg-right">
+                                    <input type="number" class="form-control radius-none" id="firstname" style = "height: 34px;" data-ng-model="source.totalNum" placeholder="请输入数量">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="firstname" class="contrl-label reg-left label-register">众包结束时间
+                                    <font color="red">*</font>
+                                </label>
+                                <div class="reg-right">
+								    <div ng-repeat="time in [{
+								        in:[
+								          {attr:'time',options:{}},
+								        ]},
+								      ] track by $index" >
+								      <div class="row">
+								        <div class="col-md-6 cover-datepicker" ng-repeat="attr in time.in">
+								          <p class="input-group" style = "width:300px">
+								            <input type="text" class="form-control input-sm" datepicker-popup="{{format}}"
+								             ng-model="dealDate[attr.attr]" is-open="attr.options.opened" min-date="minDate"
+								              datepicker-options="dateOptions" 
+								               ng-required="true" close-text="Close" />
+								            <span class="input-group-btn">
+								              <button type="button" class="btn btn-default cover-btn-tn"
+								              ng-click="openfinish($event,attr.options)"><i class="glyphicon glyphicon-calendar"></i></button>
+								            </span>
+								          </p>
+								        </div>
+								      </div>
+								    </div>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="firstname" class="contrl-label reg-left label-register">发货时间
+                                    <font color="red">*</font>
+                                </label>
+                                <div class="reg-right">
+								    <div ng-repeat="time in [{
+								        in:[
+								          {attr:'time',options:{}},
+								        ]},
+								      ] track by $index" >
+								      <div class="row">
+								        <div class="col-md-6 cover-datepicker" ng-repeat="attr in time.in">
+								          <p class="input-group" style = "width:300px">
+								            <input type="text" class="form-control input-sm" datepicker-popup="{{format}}"
+								             ng-model="deliverDate[attr.attr]" is-open="attr.options.opened" min-date="minDate2"
+								              datepicker-options="dateOptions" 
+								               ng-required="true" close-text="Close" />
+								            <span class="input-group-btn">
+								              <button type="button" class="btn btn-default cover-btn-tn"
+								              ng-click="opensend($event,attr.options)"><i class="glyphicon glyphicon-calendar"></i></button>
+								            </span>
+								          </p>
+								        </div>
+								      </div>
+								    </div>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="firstname" class="reg-left control-label cancel-reg label-register"></label>
+                                <div class="reg-right">
+                                    <div style="padding-left:0px;width:100%">
+                                        <button ng-click="confirm()" type="submit" class="btn btn-register radius-none" id="coursebtn">确认修改</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

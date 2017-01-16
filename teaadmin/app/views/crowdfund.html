@@ -1,0 +1,183 @@
+<div ng-include="'views/left-frame.html'"></div>
+<div class="content" ng-show="mainShow">
+    <div class="header">
+        <h1 class="page-title">众筹产品管理</h1>
+        <ul class="breadcrumb">
+            <li><a href="#!/home">主页</a> </li>
+            <li class="active">众筹产品管理</li>
+        </ul>
+    </div>
+
+    <div class="main-content">
+        <table st-table="displayedCollection" st-safe-src="rowCollection" class="table table-striped" >
+        <thead>
+        <tr>
+            <!--<th>是否选中</th>-->
+            <th st-sort="id" style="width: 6%;">产品ID</th>
+            <th st-sort="type" style="width: 8%;">产品类型</th>
+            <th st-sort="createDate" style="width: 9%;">开始时间</th>
+            <th st-sort="dealDate" style="width: 9%;">结束时间</th>
+            <th st-sort="deliverDate" style="width: 9%;">发货时间</th>
+            <!--<th st-sort="totalNum" style="width: 8%;">商品总量</th>-->
+            <th st-sort="remainderNum" style="width: 10%;text-align: right">剩余总量</th>
+            <!--<th st-sort="unitNum">每份数量</th>-->
+            <th st-sort="unitMoney" style="width: 10%;text-align: right">每份金额</th>
+            <!--<th st-sort="joinNum">当前参与人数</th>-->
+            <th st-sort="product.name" style="width: 12%;">商品名称</th>
+            <!--<th st-sort="product.locality">商品产地</th>-->
+            <th st-sort="product.teaSaler.name" style="width: 8%;">卖家姓名</th>
+            <th st-sort="product.teaSaler.tel">卖家电话</th>
+            <!--<th st-sort="state">订单状态</th>-->
+            <!--<th st-sort="alive" style="width: 8%;">是否删除</th>-->
+            <th style="width: 5%;">详情</th>
+        </tr>
+
+        <tr>
+            <!--<th colspan="2"></th>-->
+            <th colspan="2"><input st-search="id" placeholder="订单ID" class="input-sm form-control" type="search"/></th>
+            <!--<th ><input st-search="type" placeholder="订单类型" class="input-sm form-control" type="search"/></th>-->
+            <!--<th ><input st-search="createDate" placeholder="开始时间" class="input-sm form-control" type="search"/></th>-->
+            <!--<th ><input st-search="dealDate" placeholder="结束时间" class="input-sm form-control" type="search"/></th>-->
+            <!--<th ><input st-search="deliverDate" placeholder="开始发货时间" class="input-sm form-control" type="search"/></th>-->
+            <!--<th ><input st-search="totalNum" placeholder="商品总量" class="input-sm form-control" type="search"/></th>-->
+            <!--<th ><input st-search="remainderNum" placeholder="剩余总量" class="input-sm form-control" type="search"/></th>-->
+            <!--<th ><input st-search="unitNum" placeholder="每份数量" class="input-sm form-control" type="search"/></th>-->
+            <!--<th ><input st-search="unitMoney" placeholder="每份金额" class="input-sm form-control" type="search"/></th>-->
+            <!--<th ><input st-search="joinNum" placeholder="当前参与人数" class="input-sm form-control" type="search"/></th>-->
+            <th colspan="2"><input st-search="product.name" placeholder="商品名称" class="input-sm form-control" type="search"/></th>
+            <!--<th ><input st-search="product.locality" placeholder="商品产地" class="input-sm form-control" type="search"/></th>-->
+            <!--<th colspan="2"><input st-search="product.teaSaler.name" placeholder="卖家姓名" class="input-sm form-control" type="search"/></th>-->
+            <th colspan="3"><input st-search="product.teaSaler.tel" placeholder="卖家电话" class="input-sm form-control" type="search"/></th>
+            <!--<th ><input st-search="state" placeholder="订单状态" class="input-sm form-control" type="search"/></th>-->
+            <!--<th ><input st-search="alive" placeholder="是否删除" class="input-sm form-control" type="search"/></th>-->
+            <th colspan="6"><input st-search class="input-sm form-control" placeholder="全局搜索" type="text"/></th>
+        </tr>
+        </thead>
+        <tbody>
+
+        <tr ng-repeat="row in displayedCollection">
+            <!--<td><input type="checkbox" ng-true-value="true" ng-false-value="false" ng-model="user.selected" /></td>-->
+            <td>{{row.id }}</td>
+            <td>{{row.type | fundType}}</td>
+            <td>{{row.createDate | mydate}}</td>
+            <td>{{row.dealDate | mydate}}</td>
+            <td>{{row.deliverDate | mydate}}</td>
+
+            <!--待做<td>{{row.payDate}}</td>-->
+            <!--earnest-->
+
+            <!--<td style="text-align: right;">{{row.totalNum}}份</td>-->
+            <td style="text-align: right;">{{row.remainderNum}}/{{row.totalNum}}份</td>
+            <!--<td>{{row.unitNum}}两</td>-->
+            <td style="text-align: right;">{{row.unitMoney}}元/{{row.unitNum}}两</td>
+            <!--<td>{{row.joinNum}}</td>-->
+            <td>{{row.product.name}}</td>
+            <!--<td>{{row.product.locality}}</td>-->
+            <td>{{row.product.teaSaler.name}}</td>
+            <td>{{row.product.teaSaler.tel}}</td>
+            <!--<td>{{row.state}}</td>-->
+            <!--<td>{{row.alive | myAlive}}</td>-->
+            <td style="text-align: center">
+                <a href="" ng-click="searchById(row)"><img src="../images/see.png" style="width: 60%;"></a>
+                <!--<a href="" role="button" ng-click="deleteOrder(row)" data-toggle="modal"><i class="fa fa-trash-o"></i></a>-->
+            </td>
+        </tr>
+
+        </tbody>
+            <tfoot>
+            <tr>
+                <td colspan="3">
+                    <h3>共{{crowdFundNum}}个众筹产品</h3>
+                </td>
+                <td colspan="8" class="text-center">
+                    <div st-pagination="" st-items-by-page="itemsByPage" st-displayed-pages="5"></div>
+                </td>
+            </tr>
+            </tfoot>
+        </table>
+
+    </div>
+        <div ng-include="'views/footer.html'"></div>
+</div>
+
+
+
+<div class="content" ng-show="eachShow">
+    <div class="header">
+        <h1 class="page-title">众筹产品详情</h1>
+        <ul class="breadcrumb">
+            <li><a href="#!/home">主页</a> </li>
+            <li><a href=""  ng-click="changeView()">众筹产品管理</a></li>
+            <li class="active">众筹产品详情</li>
+        </ul>
+    </div>
+
+    <div class="main-content">
+        <table st-table="displayedCollection2" st-safe-src="rowCollection2" class="table table-striped" >
+            <thead>
+            <tr>
+                <!--<th>是否选中</th>-->
+                <th st-sort="id" style="width: 6%;">用户ID</th>
+                <th st-sort="level" style="width: 8%;">用户等级</th>
+                <th st-sort="nickname" style="width: 8%;">买家昵称</th>
+                <th st-sort="tel" style="width: 15%">买家电话</th>
+                <th st-sort="address" style="width: 15%;">收货地址</th>
+                <th st-sort="money" style="width: 10%;text-align: right">金额</th>
+                <th st-sort="createDate" style="width: 10%;">创建时间</th>
+                <th st-sort="alive" style="width: 10%;">是否删除</th>
+                <!--<th style="width: 5%;">管理</th>-->
+            </tr>
+
+            <tr>
+                <!--<th colspan="2"></th>-->
+                <th colspan="2"><input st-search="id" placeholder="订单ID" class="input-sm form-control" type="search"/></th>
+                <!--<th ><input st-search="type" placeholder="订单类型" class="input-sm form-control" type="search"/></th>-->
+                <!--<th ><input st-search="createDate" placeholder="开始时间" class="input-sm form-control" type="search"/></th>-->
+                <!--<th ><input st-search="dealDate" placeholder="结束时间" class="input-sm form-control" type="search"/></th>-->
+                <!--<th ><input st-search="deliverDate" placeholder="开始发货时间" class="input-sm form-control" type="search"/></th>-->
+                <!--<th ><input st-search="totalNum" placeholder="商品总量" class="input-sm form-control" type="search"/></th>-->
+                <!--<th ><input st-search="remainderNum" placeholder="剩余总量" class="input-sm form-control" type="search"/></th>-->
+                <!--<th ><input st-search="unitNum" placeholder="每份数量" class="input-sm form-control" type="search"/></th>-->
+                <!--<th ><input st-search="unitMoney" placeholder="每份金额" class="input-sm form-control" type="search"/></th>-->
+                <!--<th ><input st-search="joinNum" placeholder="当前参与人数" class="input-sm form-control" type="search"/></th>-->
+                <th colspan="2"><input st-search="nickname" placeholder="买家昵称" class="input-sm form-control" type="search"/></th>
+                <!--<th ><input st-search="product.locality" placeholder="商品产地" class="input-sm form-control" type="search"/></th>-->
+                <!--<th colspan="2"><input st-search="product.teaSaler.name" placeholder="卖家姓名" class="input-sm form-control" type="search"/></th>-->
+                <th colspan="2"><input st-search="tel" placeholder="买家电话" class="input-sm form-control" type="search"/></th>
+                <!--<th ><input st-search="state" placeholder="订单状态" class="input-sm form-control" type="search"/></th>-->
+                <!--<th ><input st-search="alive" placeholder="是否删除" class="input-sm form-control" type="search"/></th>-->
+                <th colspan="3"><input st-search class="input-sm form-control" placeholder="全局搜索" type="text"/></th>
+            </tr>
+            </thead>
+            <tbody>
+
+            <tr ng-repeat="row in displayedCollection2">
+                <!--<td><input type="checkbox" ng-true-value="true" ng-false-value="false" ng-model="user.selected" /></td>-->
+                <td>{{row.id }}</td>
+                <td>{{row.level}}</td>
+                <td>{{row.nickname}}</td>
+                <td>{{row.tel}}</td>
+                <td>{{row.address}}</td>
+                <td style="text-align: right">{{row.money | number:2}}元</td>
+                <td>{{row.createDate}}</td>
+                <td>{{row.alive | myAlive}}</td>
+                <!--<td><a href=""><i class="fa fa-pencil"></i></a></td>-->
+            </tr>
+
+            </tbody>
+            <tfoot>
+            <tr>
+                <td colspan="3">
+                    <h3>共{{CustomerNum}}个消费者参与</h3>
+                </td>
+                <td colspan="5" class="text-center">
+                    <div st-pagination="" st-items-by-page="itemsByPage" st-displayed-pages="5"></div>
+                </td>
+            </tr>
+            </tfoot>
+
+        </table>
+
+    </div>
+    <div ng-include="'views/footer.html'"></div>
+</div>

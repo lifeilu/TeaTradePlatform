@@ -1,0 +1,90 @@
+  <div class="recommend">
+    <div class="row recommend-nav">
+      <div class="col-md-12 col-sm-12 col-xs-12 bigtitle">
+        <img class="first-logo" src="images/icon_gray.png">已购商品
+      </div>
+
+    </div>
+    <div class="row" style = "margin-top: 10px">
+      <div class="col-md-12 col-sm-12 col-xs-12">
+        <div ng-if="tea.teaSaler.account.headURL != null">
+            <a class = "teaSaler"><img class = "teaSalerimg" src="/api/image/getByUrl?url={{tea.teaSaler.account.headURL}}" class="img-width-25">&nbsp&nbsp{{tea.teaSaler.nickname}}</a>
+        </div>
+        <div ng-if="tea.teaSaler.account.headURL == null">
+            <a class = "teaSaler"><img class = "teaSalerimg" src="images/userphoto.jpg" class="img-width-25">&nbsp&nbsp{{tea.teaSaler.nickname}}</a>
+        </div>
+         <hr >
+        <table style="text-align:center">
+          <tr>
+            <td style = "color:#B0C330;width:200px;padding-left:30px;">茶叶图片</td>
+            <td style="color:#B0C330;width:200px">茶叶名称</td>
+            <td style="color:#B0C330;width:120px">单价</td>
+            <td style="color:#B0C330;width:150px">数量</td>
+            <td style="color:#B0C330;width:120px">金额</td>
+          </tr>
+            <td>
+              <a ui-sref="main.detail({tea:tea.id})">
+                <img style="width:200px;height:150px;padding-left:30px;" src="/api/image/getByUrl?url={{tea.url}}">
+              </a>
+            </td>
+            <td width="200px">
+              {{tea.name}}
+            </td>
+            <td width="120px">
+              <!-- <span style="text-decoration: line-through;color: #AFAFAF;">￥{{tea.price}}</span> -->
+              <span>{{tea.price * (tea.discount*100)/100}}元/两</span>
+            </td>
+            <td width="150px">
+              <a href='#' ng-click="decnum()">-</a>
+              <input type="number" ng-model="tea.num" style="width:30px">
+              <a href='#' ng-click="addnum()">+</a>两
+            </td>
+            <td width="120px">
+              {{tea.price * (tea.discount*100)* tea.num / 100}}元
+            </td>
+        </table>
+      </div>
+      <div class="col-md-12 col-sm-12 col-xs-12" style="padding: 25px 25px;">
+        <div class="row">
+            <label for="firstname" class="cart-left control-label label-register">通讯地址
+                <font color="red">*</font>
+            </label>
+            <div class="reg-right" style = "width:300px">
+                <input select-address p="p" c="c" a="a" d="d" ng-model="user.address" placeholder="请选择所在地" type="text" class="form-control" />
+            </div>
+            <label for="firstname" class="cart-left control-label label-register">邮编
+                <font color="red">*</font>
+            </label>
+            <div class="reg-right" style = "width:200px">
+                <input type="text" class="form-control user-input" id="lastname" data-ng-model="user.zip" placeholder="请输入邮编">
+            </div>
+        </div>
+        <div class="row">
+            <label for="firstname" class="cart-left control-label label-register">姓名
+                <font color="red">*</font>
+            </label>
+            <div class="reg-right" style = "width:300px">
+                <input type="text" class="form-control user-input" id="lastname" data-ng-model="user.nickname" placeholder="请输入姓名">
+            </div>
+            <label for="firstname" class="cart-left control-label label-register">联系电话
+                <font color="red">*</font>
+            </label>
+            <div class="reg-right" style = "width:200px">
+                <input type="text" class="form-control user-input" id="lastname" data-ng-model="user.tel" placeholder="请输入联系电话">
+            </div>
+        </div>
+        <div style="float:right">
+          <div style="float:right">
+            <span>运费</span>
+            <span style="color:#B0C330;"> {{freight}}</span>
+            <span>元</span>
+            <span>总计：</span>
+            <span style="color:#B0C330;">￥{{allval+freight}}</span>
+          </div>
+          <br>
+          <a class="confirm-button" href="#" ng-click="submit()">确认购买<a/>
+
+        </div>
+      </div>
+    </div>
+  </div>

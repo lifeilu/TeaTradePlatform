@@ -1,0 +1,109 @@
+<div style="padding-top:12px">
+    <div class="row thebook">
+        <div class="col-md-6 col-sm-6 col-xs-6" style="padding-left:30px">
+            <div id="myCarousel" class="carousel slide">
+                    <carousel class="carousel-inner" interval="myInterval">
+                        <slide ng-repeat="slide in slides" active="slide.active">
+                            <img ng-src="/api/image/getByUrl?url={{slide.url}}" style="margin:auto;">
+                            <div class="carousel-caption"></div>
+                        </slide>
+                    </carousel>   
+            </div>
+        </div>
+        <div class="col-md-6 col-sm-6 col-xs-6 thebookintro">
+            <div class="coursename" style="padding-top:8px;font-size:25px;line-height:35px">茶叶名称:   {{tea.name}}</div>
+            <div>
+                <div class="star" style="text-align:bottom;padding-left:15px">
+                    <span class="vote-star" ng-bind-html="htmlStr| trustHtml"></span> {{tea.commentNum}}人评价
+                </div>
+            </div>
+            <table class="teadetail" style="">
+                <tbody>
+                    <tr valign="top" data-toggle="tooltip" data-placement="right" data-html="true">
+                        <td valign="top" style="padding-left:15px">店&nbsp家:</td>
+                        <td>{{tea.teaSaler.nickname}}</td>
+                    </tr>
+                    <tr>
+                        <td valign="top" style="padding-left:15px">等&nbsp级:</td>
+                        <td>{{levelEnum[tea.level]}}</td>
+                    </tr>
+                    <tr>
+                        <td valign="top" style="padding-left:15px">产&nbsp地:</td>
+                        <td>{{tea.locality}}</td>
+                    </tr>
+                    <tr>
+                        <td valign="top" style="padding-left:15px">邮&nbsp费:</td>
+                        <td>{{tea.postage}}元</td>
+                    </tr>
+                    <tr>
+                        <td valign="top" style="padding-left:15px">数&nbsp量:</td>
+                        <td width="150px">
+                          <a href='#' ng-click="decnum()">-</a>
+                          <input type="number" ng-model="teanum" style="width:40px">
+                          <a href='#' ng-click="addnum()">+</a>两
+                        </td>
+                    </tr>                  
+                    <tr>
+                        <td valign="top" style="padding-left:15px">原&nbsp价:</td>
+                        <td style = "text-decoration: line-through">{{tea.price}}元/两</td>
+                    </tr> 
+                    <tr>
+                        <td valign="top" style="padding-left:15px">折扣价:</td>
+                        <td style="color: #FF0000;font-size: 22px;" >{{tea.price*(tea.discount * 100) / 100 }}元/两</td>
+                    </tr> 
+                </tbody>
+            </table>
+            <div>
+                <div class="col-md-6 col-sm-6 col-xs-6" style="margin-top:18px">
+                    <div class="buy-button" style="padding-top:5px"><a ng-click="cartadd()" style="font-size:18px">加入购物车</a> 
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-6" style="margin-top:18px">
+                    <div class="buy-button" style="padding-top:5px"><a ng-click="immebuy()" style="font-size:18px">立即购买</a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row coursedescription">
+        <div class="row" style="margin:0px">
+            <div class="col-md-12">
+                <div class="recommend-nav">
+                    <div class="col-md-12 col-sm-12 col-xs-12 bigtitle">
+                        <img class="first-logo" src="/images/icon_gray.png">&nbsp;详细介绍</div>
+                </div>
+                <div class="coursedes-detail" ng-bind-html="remark">
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" style = "padding-top: 30px">
+      <div class="col-md-12 col-sm-12 col-xs-12">
+        <table style="text-align:center">
+          <tr>
+            <td style="color:#B0C330;width:100px">评分</td>
+            <td style="color:#B0C330;width:750px">评论</td>
+            <td style="color:#B0C330;width:200px">用户</td>
+          </tr>
+            <tr ng-repeat="comment in comments ">
+              <td style = "width:100px;">
+                {{comment.score}}分
+              </td>
+              <td style = "width:850px; text-align:start">
+                {{comment.content}}
+              </td>
+              <td width="200px">
+                {{comment.customer.nickname}}
+              </td>
+            </tr>
+        </table>
+      </div>
+    </div>
+    <button ng-disabled="nowPage == 1" class="btn btn-list btn-w-md" ng-click="prev()">上一页</button>
+    <input ng-model = "page" style="width:3%">
+    <button class="btn btn-list btn-w-md" ng-click="jump()">跳转</button>
+    {{nowPage}}
+    /
+    {{totalPage}}
+    <button ng-disabled="nowPage >= totalPage" class="btn btn-list btn-w-md" ng-click="next()">下一页</button>
+</div>

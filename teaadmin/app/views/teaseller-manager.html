@@ -1,0 +1,379 @@
+<div ng-include="'views/left-frame.html'"></div>
+
+<div class="content" ng-show="mainShow">
+    <div class="header">
+        <h1 class="page-title">茶农管理</h1>
+        <ul class="breadcrumb">
+            <li><a href="#!/home">主页</a> </li>
+            <li class="active">茶农管理</li>
+        </ul>
+        <!--<div>-->
+        <!--<div class="btn-toolbar list-toolbar" >-->
+            <!--<a href="#!/teasellerAdd" ><img src="images/add.png" style="margin-top:2%;width:50px;height:50px" align="right"></a>-->
+            <!--<div class="btn-group"></div>-->
+        <!--</div>-->
+    </div>
+
+    <div class="main-content">
+        <!--<div>-->
+            <!--<h3>茶农查找</h3>-->
+            <!--&lt;!&ndash;<form >&ndash;&gt;-->
+                <!--&lt;!&ndash;用户名：<input type="text" style="height: 26px;width: 90px"  placeholder="张三" ng-model ="name">&ndash;&gt;-->
+                <!--&lt;!&ndash;等级：<input type="text" style="height: 26px;width: 40px"  placeholder="1" ng-model ="level">&ndash;&gt;-->
+                <!--&lt;!&ndash;联系电话：<input type="text" style="height: 26px;width: 100px"  placeholder="13212716306" ng-model ="tel">&ndash;&gt;-->
+                <!--&lt;!&ndash;是否审核：<input type="text" style="height: 26px;width: 40px"  placeholder="0" ng-model  ="state">&ndash;&gt;-->
+                <!--&lt;!&ndash;&lt;!&ndash;创建时间：<input type="date" style="height: 26px;width: 140px" placeholder="2016/11/3">&ndash;&gt;&ndash;&gt;-->
+                <!--&lt;!&ndash;<br>&ndash;&gt;-->
+                <!--&lt;!&ndash;<button ng-click="search()"  class="btn btn-primary ">搜索</button>&ndash;&gt;-->
+                <!--&lt;!&ndash;<button ng-click="approve()"  class="btn btn-primary ">一键审批</button>&ndash;&gt;-->
+            <!--&lt;!&ndash;</form>&ndash;&gt;-->
+        <!--</div>-->
+     <div>
+        <!--<div class="btn-toolbar list-toolbar" >-->
+            <!--<a href="#!/teasellerAdd" ><img src="images/add.png" style="width:50px;height:50px" align="right"></a>-->
+            <!--<div class="btn-group"></div>-->
+        <!--</div>-->
+
+         <table st-table="displayedCollection" st-safe-src="rowCollection" class="table table-striped">
+             <thead>
+             <tr>
+                 <!--<th >是否选中</th>-->
+                 <th st-sort="id" style="width: 5%">序号</th>
+                 <th st-sort="name" style="width: 8%">用户名</th>
+                 <th st-sort="tel">联系电话</th>
+                 <th st-sort="state" style="width: 8%">审批</th>
+                 <!--<th st-sort="alive" style="width: 8%">是否删除</th>-->
+                 <th st-sort="level" style="width: 7%">等级</th>
+                 <th st-sort="nickname"  style="width: 12%;">昵称</th>
+                 <th st-sort="money" style="width: 9%;text-align: right">账户余额</th>
+                 <th st-sort="createDate" style="width:10%;">创建时间</th>
+                 <th st-sort="idCard">身份证号</th>
+                 <th style="width: 8%">营业执照</th>
+                 <!--<th>联系地址</th>-->
+                 <!--<th>邮编</th>-->
+                 <th style="width: 5%;">审批</th>
+                 <th style="width: 5%;">销量</th>
+                 <th style="width: 5%;">删除</th>
+             </tr>
+             <tr>
+                 <!--<th colspan="2"></th>-->
+                 <!--<th colspan="2"><input st-search="id" placeholder="用户ID" class="input-sm form-control" type="search"/></th>-->
+                 <th colspan="2" ><input st-search="name" placeholder="用户名" class="input-sm form-control" type="search"/></th>
+                 <th colspan="2" ><input st-search="tel" placeholder="电话" class="input-sm form-control" type="search"/></th>
+                 <!--<th ><input st-search="state" placeholder="是否审核" class="input-sm form-control" type="search"/></th>-->
+                 <!--<th ><input st-search="alive" placeholder="是否删除" class="input-sm form-control" type="search"/></th>-->
+                 <!--<th ><input st-search="level" placeholder="等级" class="input-sm form-control" type="search"/></th>-->
+                 <th colspan="3" ><input st-search="nickname" placeholder="昵称" class="input-sm form-control" type="search"/></th>
+                 <!--<th ><input st-search="money" placeholder="账户余额" class="input-sm form-control" type="search"/></th>-->
+                 <!--<th ><input st-search="createDate" placeholder="创建时间" class="input-sm form-control" type="search"/></th>-->
+                 <th colspan="3" ><input st-search="idCard" placeholder="身份证号" class="input-sm form-control" type="search"/></th>
+                 <th colspan="3"><input st-search class="input-sm form-control" placeholder="全局搜索" type="text"/></th>
+             </tr>
+
+             </thead>
+             <tbody>
+             <tr ng-repeat="row in displayedCollection">
+                 <!--<td><input type="checkbox" ng-true-value="true" ng-false-value="false" ng-model="user.selected" /></td>-->
+                 <td>{{row.id }}</td>
+                 <td>{{row.name}}</td>
+                 <td>{{row.tel}}</td>
+                 <td>{{row.state | myState}}</td>
+                 <!--<td>{{row.alive | myAlive}}</td>-->
+                 <td>{{row.level| salerLevel}}</td>
+                 <td>{{row.nickname}}</td>
+                 <td style="text-align: right">{{row.account.money | number:0}}元</td>
+                 <td>{{row.createDate}}</td>
+                 <td>{{row.idCard}}</td>
+                 <td><img ng-src="{{row.licenseUrl|myImageUrl}}" style="width:50px;height:50px"></td>
+                 <!--<td>{{row.address}}</td>-->
+                 <!--<td>{{row.zip}}</td>-->
+                 <td style="text-align: center">
+                     <a href="" ng-click="approveByTel(row)"><i class="fa fa-pencil"></i></a>
+                 </td>
+                 <td style="text-align: center">
+                     <a href="" ng-click="seeSale(row)"><img src="../images/see.png" style="width: 60%;"></a>
+                 </td>
+                 <td style="text-align: center">
+                    <a href="" role="button" ng-click="deleteSeller(row)" data-toggle="modal"><i class="fa fa-trash-o"></i></a>
+                 </td>
+             </tr>
+             </tbody>
+             <tfoot>
+             <tr>
+                 <td colspan="13" class="text-center">
+                     <div st-pagination="" st-items-by-page="itemsByPage" st-displayed-pages="5"></div>
+                 </td>
+             </tr>
+             </tfoot>
+         </table>
+
+         <div class="row">
+             <div class="col-lg-6">
+                <h3>共{{teaSalerNum}}个茶农</h3>
+             </div>
+             <div class="col-lg-6" style="text-align: right">
+                 <button ng-click="approveAll()"  class="btn btn-primary " style="background-color: #428bca;">批量审批</button>
+             </div>
+         </div>
+
+
+
+        <!--分页-->
+        <!--<ul class="pagination" data-ng-model="pageIndex">-->
+            <!--<li><a href="#">&laquo;</a></li>-->
+            <!--<li><a href="#" ng-click="">1</a></li>-->
+            <!--<li><a href="#">2</a></li>-->
+            <!--<li><a href="#">3</a></li>-->
+            <!--<li><a href="#">4</a></li>-->
+            <!--<li><a href="#">5</a></li>-->
+            <!--<li><a href="#">&raquo;</a></li>-->
+        <!--</ul>-->
+    </div>
+    </div>
+        <div ng-include="'views/footer.html'"></div>
+      </div>
+    </div>
+
+
+
+<div class="content" ng-show="saleShow">
+    <div class="header">
+        <h1 class="page-title">茶农销量查看</h1>
+        <ul class="breadcrumb">
+            <li><a href="#!/home">主页</a> </li>
+            <li><a href="" ng-click="changeView()">茶农管理</a> </li>
+            <li class="active">茶农销量查看</li>
+        </ul>
+    </div>
+
+    <div class="main-content">
+        <div class="row">
+            <div class="col-lg-6">
+                <p>产品销量统计</p>
+                <table st-table="displayedCollection2" st-safe-src="rowCollection2" class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th st-sort="proId">产品序号</th>
+                        <th st-sort="productName">产品名称</th>
+                        <th st-sort="number">销量</th>
+                        <!--<th style="width: 3.5em;">管理</th>-->
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="row in displayedCollection2">
+                        <td>{{row.proId }}</td>
+                        <td>{{row.productName}}</td>
+                        <td>{{row.number}}</td>
+                        <!--<td><a href="" ng-click=""><i class="fa fa-pencil"></i></a></td>-->
+                    </tr>
+                    </tbody>
+                    <tfoot>
+                    <tr>
+                        <td colspan="3" class="text-center">
+                            <div st-pagination="" st-items-by-page="itemsByPage" st-displayed-pages="5"></div>
+                        </td>
+                    </tr>
+                    </tfoot>
+                </table>
+            </div>
+
+            <div class="col-lg-6">
+                <p>产品类型销量统计</p>
+                <table st-table="displayedCollection3" st-safe-src="rowCollection3" class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th st-sort="proId">产品序号</th>
+                        <th st-sort="productName">产品类型名称</th>
+                        <th st-sort="number">销量</th>
+                        <!--<th style="width: 3.5em;">管理</th>-->
+                    </tr>
+
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="row in displayedCollection3">
+                        <td>{{row.proId }}</td>
+                        <td>{{row.productName}}</td>
+                        <td>{{row.number}}</td>
+                        <!--<td><a href="" ng-click=""><i class="fa fa-pencil"></i></a></td>-->
+                    </tr>
+                    </tbody>
+                    <tfoot>
+                    <tr>
+                        <td colspan="3" class="text-center">
+                            <div st-pagination="" st-items-by-page="itemsByPage" st-displayed-pages="5"></div>
+                        </td>
+                    </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-6">
+                <!--<p>图表展示</p>-->
+                <!--<div class="row">-->
+                <!--<div class="col-lg-9">-->
+                <!--<canvas class="chart chart-line" chart-data="data2" chart-labels="labels2"-->
+                        <!--chart-series="series" chart-colors="colors" chart-click="onClick" ></canvas>-->
+                <canvas class="chart chart-horizontal-bar" chart-data="data2" chart-labels="labels2"
+                        chart-series="series" chart-options="options"></canvas>
+                <!--</div>-->
+                <div style="margin-top: 10%;margin-left: 5%;">
+                    <a href="" ng-click="changeView2()">更多图表</a>
+                </div>
+                <!--</div>-->
+            </div>
+
+            <div class="col-lg-6">
+                <!--<p>图表展示</p>-->
+                <!--<div class="row">-->
+                <!--<div class="col-lg-9">-->
+                <!--<canvas class="chart chart-line" chart-data="data3" chart-labels="labels3"-->
+                        <!--chart-series="series" chart-colors="colors" chart-click="onClick" ></canvas>-->
+                <canvas class="chart chart-bar" chart-data="data3" chart-labels="labels3"
+                        chart-series="series" chart-options="options"></canvas>
+
+                <!--</div>-->
+                <div style="margin-top: 10%;margin-left: 5%;">
+                    <a href="" ng-click="changeView5()">更多图表</a>
+                </div>
+                <!--</div>-->
+            </div>
+        </div>
+    </div>
+        <div ng-include="'views/footer.html'"></div>
+    </div>
+
+
+
+
+<div class="content" ng-show="chartShow2">
+    <div class="header">
+        <h1 class="page-title">茶农销量查看图表显示</h1>
+        <ul class="breadcrumb">
+            <li><a href="#!/home">主页</a> </li>
+            <li><a href="" ng-click="changeView3()">茶农管理</a> </li>
+            <li><a href="" ng-click="changeView4()">茶农销量查看</a> </li>
+            <li class="active">茶农销量查看图表显示</li>
+        </ul>
+    </div>
+
+    <div class="main-content">
+
+        <div class="row">
+            <!--<div class="panel panel-default">-->
+            <!--<div class="panel-heading">图表展示</div>-->
+            <!--<div class="panel-body">-->
+            <div class="col-lg-6 col-sm-12">
+                <!--<canvas class="chart chart-line" chart-data="data2" chart-labels="labels2"-->
+                        <!--chart-series="series" chart-colors="colors" chart-click="onClick" ></canvas>-->
+                <canvas class="chart chart-line" chart-data="data2" chart-labels="labels2"
+                        chart-series="series" chart-colors="colors" chart-click="onClick" ></canvas>
+                <hr/>
+
+                <!--<canvas class="chart chart-bar" chart-data="data2" chart-labels="labels2"-->
+                        <!--chart-series="series" chart-options="options"></canvas>-->
+
+                <canvas class="chart chart-doughnut" chart-data="data2" chart-labels="labels2"
+                        chart-series="series" chart-options="options" chart-colors="colors"></canvas>
+                <hr/>
+
+                <canvas class="chart chart-radar" chart-data="data2" chart-labels="labels2"
+                        chart-series="series" chart-options="options"></canvas>
+
+                <!--<canvas class="chart chart-bubble" chart-data="data2" chart-labels="labels2"-->
+                        <!--chart-series="series" chart-options="options"></canvas>-->
+
+            </div>
+            <div class="col-lg-6 col-sm-12">
+                <!--<canvas class="chart chart-horizontal-bar" chart-data="data2" chart-labels="labels2"-->
+                        <!--chart-series="series" chart-options="options"></canvas>-->
+                <canvas class="chart chart-bar" chart-data="data2" chart-labels="labels2"
+                        chart-series="series" chart-options="options"></canvas>
+                <hr/>
+
+
+                <canvas class="chart chart-pie" chart-data="data2" chart-labels="labels2"
+                        chart-series="series" chart-options="options"></canvas>
+                <hr/>
+
+                <canvas class="chart chart-polar-area" chart-data="data2" chart-labels="labels2"
+                        chart-series="series" chart-options="options"></canvas>
+
+
+
+
+            </div>
+            <!--</div>-->
+            <!--</div>-->
+        </div>
+    </div>
+    <div ng-include="'views/footer.html'"></div>
+</div>
+
+
+
+
+
+
+<div class="content" ng-show="chartShow3">
+    <div class="header">
+        <h1 class="page-title">茶农销量查看图表显示</h1>
+        <ul class="breadcrumb">
+            <li><a href="#!/home">主页</a> </li>
+            <li><a href="" ng-click="changeView6()">茶农管理</a> </li>
+            <li><a href="" ng-click="changeView7()">茶农销量查看</a> </li>
+            <li class="active">茶农销量查看图表显示</li>
+        </ul>
+    </div>
+
+    <div class="main-content">
+
+        <div class="row">
+            <!--<div class="panel panel-default">-->
+            <!--<div class="panel-heading">图表展示</div>-->
+            <!--<div class="panel-body">-->
+            <div class="col-lg-6 col-sm-12">
+                <!--<canvas class="chart chart-line" chart-data="data3" chart-labels="labels3"-->
+                        <!--chart-series="series" chart-colors="colors" chart-click="onClick" ></canvas>-->
+                <canvas class="chart chart-horizontal-bar" chart-data="data3" chart-labels="labels3"
+                        chart-series="series" chart-options="options"></canvas>
+
+                <hr/>
+
+                <canvas class="chart chart-doughnut" chart-data="data3" chart-labels="labels3"
+                        chart-series="series" chart-options="options" chart-colors="colors" ></canvas>
+                <hr/>
+
+                <canvas class="chart chart-radar" chart-data="data3" chart-labels="labels3"
+                        chart-series="series" chart-options="options"></canvas>
+
+                <!--<canvas class="chart chart-bubble" chart-data="data3" chart-labels="labels3"-->
+                        <!--chart-series="series" chart-options="options"></canvas>-->
+
+            </div>
+            <div class="col-lg-6 col-sm-12">
+                <canvas class="chart chart-line" chart-data="data3" chart-labels="labels3"
+                        chart-series="series" chart-colors="colors" chart-click="onClick" ></canvas>
+                <hr/>
+
+                <!--<canvas class="chart chart-horizontal-bar" chart-data="data3" chart-labels="labels3"-->
+                        <!--chart-series="series" chart-options="options"></canvas>-->
+
+                <canvas class="chart chart-pie" chart-data="data3" chart-labels="labels3"
+                        chart-series="series" chart-options="options"></canvas>
+                <hr/>
+
+                <canvas class="chart chart-polar-area" chart-data="data3" chart-labels="labels3"
+                        chart-series="series" chart-options="options"></canvas>
+
+
+
+
+            </div>
+            <!--</div>-->
+            <!--</div>-->
+        </div>
+    </div>
+    <div ng-include="'views/footer.html'"></div>
+</div>

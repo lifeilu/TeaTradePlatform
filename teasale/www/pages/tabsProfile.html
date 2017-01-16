@@ -1,0 +1,90 @@
+<ion-view hide-nav-bar="true">
+	<ion-header-bar align-title="center" class="my-nav-bar bar-positive" scroll-to-top>
+		<h1 class="title">个人主页</h1>
+	</ion-header-bar>
+	<ion-content on-swipe-right="toLeftTab()">
+		<div style="position: relative; width: 50%; height: 0;
+		padding-bottom: 50%; margin: 8% auto;">
+			<div style="position: absolute; width: 100%; height: 100%">
+				<img ng-src="{{currentUser.account.headURL | productImageUrl}}" style="width: 100%; height: 100%; max-width: 100%; max-height: 100%" alt="我的头像" on-hold="uploadPortrait()">
+			</div>
+		</div>
+		<div class="list" style="margin-left: auto; margin-right: auto; margin-top: 5%; margin-bottom: 0px">
+			<label class="item item-input">
+				<span class="input-label">姓名：</span>
+				<input type="text" ng-model="currentUser.name" disabled>
+			</label>
+			<label class="item item-input">
+				<span class="input-label">昵称：</span>
+				<input type="text" ng-model="currentUser.nickname" disabled>
+			</label>
+			<label class="item item-input">
+				<span class="input-label">手机号：</span>
+				<input type="text" ng-model="currentUser.tel" disabled>
+			</label>
+			<label class="item item-input">
+				<span class="input-label">身份证号：</span>
+				<input type="text" ng-model="currentUser.idCard" disabled>
+			</label>
+			<label class="item item-input">
+				<span class="input-label">地址：</span>
+				<input type="text" ng-model="currentUser.address" disabled>
+			</label>
+			<label class="item item-input">
+				<span class="input-label">邮编：</span>
+				<input type="text" ng-model="currentUser.zip" disabled>
+			</label>
+			<label class="item item-input">
+				<span class="input-label">余额：</span>￥
+				<input type="text" ng-model="currentUser.account.money" disabled>
+			</label>
+		</div>
+		<div class="item item-divider">
+		</div>
+		<div class="list" style="margin-bottom: 0px">
+			<a class="item item-icon-left" ng-click="showPricePredicate()">
+				<i class="icon ion-arrow-graph-up-right" style="color: #4AA53D"></i>
+				查看价格预测
+			</a>
+		</div>
+		<div class="item item-divider">
+		</div>
+		<div class="center-middle" style="margin-top: 6%; width: 90%; margin-left: auto; margin-right: auto; margin-bottom: 6%">
+			<button class="login-button button button-assertive" ng-click="logout()">退出当前账号</button>
+		</div>
+	</ion-content>
+</ion-view>
+
+<script id="templates/pricePredicate.html" type="text/ng-template">
+	<ion-modal-view>
+		<ion-view hide-nav-bar="true">
+			<ion-header-bar align-title="center" class="my-nav-bar bar-positive">
+				<button class="button button-clear" ng-click="pricePredicateModal.remove()" nav-direction="back">
+					<i class="lty-icon ion-android-arrow-back"></i>
+				</button>
+				<h1 class="title">茶叶价格预测</h1>
+			</ion-header-bar>
+			<ion-content class="has-header">
+				<ul class="list">
+
+					<li class="item" ng-repeat="price in pricesPredicates">
+						<div style="display: inline-block; width:20%">
+							{{price.province}}
+						</div>
+						<div style="display: inline-block; width:25%">
+							{{price.name}}
+						</div>
+						<div style="display: inline-block; width:20%">
+							{{price.level}}星级
+						</div>
+						<div style="display: inline-block; width:35%">
+							{{price.price.toFixed(2) + ' 元/斤'}}
+						</div>
+					</li>
+
+				</ul>
+
+			</ion-content>
+		</ion-view>
+	</ion-modal-view>
+</script>

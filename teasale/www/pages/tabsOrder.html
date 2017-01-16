@@ -1,0 +1,121 @@
+<ion-view hide-nav-bar="true">
+	<ion-header-bar align-title="center" class="my-nav-bar bar-positive" scroll-to-top>
+		<button class="button button-clear" ng-click="showFilter = !showFilter">{{{true: '筛选', false:'收起'}[!showFilter]}}</button>
+		<h1 class="title">订单列表</h1>
+	</ion-header-bar>
+	<ion-content on-swipe-left="toRightTab()" on-swipe-right="toLeftTab()" style="background-color: rgba(0, 0, 0, 0.06)">
+		<div class="search-list" ng-show="showFilter" id="OrderSearch" style="background-color: white">
+			<div class="search-item">
+				<div class="search-element">订单状态: &nbsp</div>
+				<div class="search-element" ng-click="filter.state = -1;" ng-class="{true: 'search-selected'}[filter.state == -1]">
+					全部
+				</div>
+				<div class="search-element" ng-click="filter.state = 4;" ng-class="{true: 'search-selected'}[filter.state == 4]">
+					未付款
+				</div>
+				<div class="search-element" ng-click="filter.state = 0;" ng-class="{true: 'search-selected'}[filter.state == 0]">
+					未发货
+				</div>
+				<div class="search-element" ng-click="filter.state = 1;" ng-class="{true: 'search-selected'}[filter.state == 1]">
+					已发货
+				</div>
+				<div class="search-element" ng-click="filter.state = 2;" ng-class="{true: 'search-selected'}[filter.state == 2]">
+					已收货
+				</div>
+				<div class="search-element" ng-click="filter.state = 3;" ng-class="{true: 'search-selected'}[filter.state == 3]">
+					已取消
+				</div>
+			</div>
+			<div class="search-item">
+				<div class="search-element">质量等级: &nbsp</div>
+				<div class="search-element" ng-click="filter.level = -1;" ng-class="{true: 'search-selected'}[filter.level == -1]">
+					全部
+				</div>
+				<div class="search-element" ng-click="filter.level = 3;" ng-class="{true: 'search-selected'}[filter.level == 3]">
+					上等
+				</div>
+				<div class="search-element" ng-click="filter.level = 2;" ng-class="{true: 'search-selected'}[filter.level == 2]">
+					中等
+				</div>
+				<div class="search-element" ng-click="filter.level = 1;" ng-class="{true: 'search-selected'}[filter.level == 1]">
+					一般
+				</div>
+			</div>
+			<div class="search-item">
+				<div class="search-element">茶叶类型: &nbsp</div>
+				<div class="search-element" ng-click="filter.type = -1;" ng-class="{true: 'search-selected'}[filter.type == -1]">
+					全部
+				</div>
+				<div class="search-element" ng-click="filter.type = 1;" ng-class="{true: 'search-selected'}[filter.type == 1]">
+					红茶
+				</div>
+				<div class="search-element" ng-click="filter.type = 2;" ng-class="{true: 'search-selected'}[filter.type == 2]">
+					绿茶
+				</div>
+				<div class="search-element" ng-click="filter.type = 3;" ng-class="{true: 'search-selected'}[filter.type == 3]">
+					普洱茶
+				</div>
+				<div class="search-element" ng-click="filter.type = 4;" ng-class="{true: 'search-selected'}[filter.type == 4]">
+					乌龙茶
+				</div>
+				<div class="search-element" ng-click="filter.type = 5;" ng-class="{true: 'search-selected'}[filter.type == 5]">
+					玫瑰花茶
+				</div>
+			</div>
+			<div class="search-item">
+				<div class="search-element">&nbsp产&nbsp&nbsp品&nbsp: &nbsp</div>
+				<div class="search-element">
+					<select style="font-size: 12px!important; color:rgba(0 ,0, 0, 0.8) !important" ng-model="filter.product">
+						<option value="-1" >全部</option>
+						<option ng-repeat="product in searchProducts" value="{{product.id.toString()}}">
+							{{product.name + " " +(product.level | level)}}
+						</option>
+					</select>
+				</div>
+			</div>
+
+			<div class="search-item">
+				<div style="font-size: 12px; color: rgba(0 ,0, 0, 0.8); display: flex; height: 22px">
+					<div style="display: inline-block">搜索内容: &nbsp</div>
+					<input type="text" style="display: inline-block; border-bottom: 1px #4AA53D solid; height: auto; flex: auto; font-size: 12px" ng-model="filter.custom">
+				</div>
+			</div>
+		</div>
+		<ion-refresher pulling-text="下拉刷新" on-refresh="refreshOrder()" class="lty-refresher"></ion-refresher>
+		<div class="card order-card" ng-repeat="order in orders | filter:filter.custom | orderSearch: filter">
+			<div class="item item-divider" style="position: relative;">
+				<i class="ion-person" style="color: #4AA53D"></i>
+
+				{{order.orderEn.customer.nickname | maxLength:3}}
+				{{order.orderEn.tel}}
+				{{order.orderEn.address}}
+
+				<div style="position: absolute; right: 8px; top: 10px" ng-style="{true:{'color':'#4AA53D'}}[order.orderEn.isConfirm == 0 && order.orderEn.state != 3]">{{order.orderEn | orderState}}</div>
+			</div>
+			<div class="item item-text-wrap">
+				<ion-list class="lty-list">
+					<ion-item ng-repeat="orderItem in order.orderItems" class="item-thumbnail-left">
+						<img ng-src="{{orderItem.product.url | productImageUrl}}" style="border: 1px solid #ddd">
+						<h2 style="color: #555555; display: inline-block">{{orderItem.product.name}}</h2>
+						<h3 style="color: #777777; display: inline-block; font-size: 12px">
+							质量等级: {{orderItem.product.level | level}}</h3>
+						<div style="margin-top: 8px">
+							<h3 style="color: #777777">购买量: {{orderItem.num}} 两</h3>
+							<h3 style="color: #777777">总价: {{orderItem.totalPrice * 10 / 10}} 元</h3>
+						</div>
+					</ion-item>
+				</ion-list>
+			</div>
+			<div class="item item-divider">
+				<div style="display: inline-block; vertical-align: sub">
+					{{order.orderEn.createDate | myDate}}
+					&nbsp邮编: {{order.orderEn.zip}}
+					&nbsp{{{true: '物流: ' + order.orderEn.wuliu}[order.orderEn.wuliu != undefined && order.orderEn.wuliu != '' && order.orderEn.wuliu != null]}}
+				</div>
+				<div style="display: inline-block; float: right">
+					<button ng-click="sendOrder(order)" ng-if="order.orderEn.isSend == 0 && order.orderEn.state == 1">发货</button>
+				</div>
+			</div>
+		</div>
+	</ion-content>
+</ion-view>

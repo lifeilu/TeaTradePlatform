@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title> TeaSale Admin </title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!--<link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/normalize.css">
+  <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/main.css">
+  <link rel="stylesheet" href="/js/app.css">
+  -->
+
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="lib/bootstrap/css/bootstrap.css">
+  <link rel="stylesheet" href="lib/font-awesome/css/font-awesome.css">
+  <link rel="stylesheet" href="css/rdash-ui/dist/css/rdash.min.css">
+
+  <link rel="stylesheet" type="text/css" href="stylesheets/theme.css">
+  <link rel="stylesheet" type="text/css" href="stylesheets/premium.css">
+  <link rel="stylesheet" type="text/css" href="css/login.css">
+
+  <link rel="stylesheet" type="text/css" href="/css/bubblemenu.css">
+
+
+  <script src="lib/jquery.js"></script>
+  <script src="lib/bootstrap.min.js"></script>
+  <script src="lib/angular/angular.js"></script>
+  <script src="lib/angular.min.js"></script>
+  <!--<script src="app/bower_components/angular-cookies/angular-cookies.js"></script>-->
+  <script src="lib/ng-file-upload.js"></script>
+  <script src="lib/angular/angular-router.js"></script>
+  <script src="bower_components/angular-smart-table/dist/smart-table.js"></script>
+
+ <!--画表格angular chart-->
+  <script src="bower_components/chart.js/dist/Chart.min.js"></script>
+  <script src="bower_components/angular-chart.js/dist/angular-chart.min.js"></script>
+  <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=nhB87EF7jEp0diMOOTjHkXYyHQwGKojT"></script>
+
+  <!--<script src="https://d3js.org/d3.v4.min.js"></script>-->
+  <!--<script src="http://vizjs.org/viz.v1.1.0.min.js"></script>-->
+  <script src="lib/d3.v3.min.js"></script>
+  <script src="lib/viz.v1.1.0.min.js"></script>
+  <!--<script src="lib/vizchord.js"></script>-->
+
+  <!--<script src="bower_components/angular-smart-table/src/stSearch.js"></script>-->
+  <!--<script src="lib/smart-table.js"></script>-->
+  <!--<script src="lib/angular-ui-router/angular-ui-router.js"></script>-->
+
+  <!--my js files here!-->
+  <script src="app.js"></script>
+  <script src="js/forget.js"></script>
+  <script src="js/home-ctrl.js"></script>
+  <script src="js/crowdfund.js"></script>
+  <script src="js/login.js"></script>
+  <script src="js/order-ctrl.js"></script>
+  <script src="js/register-ctrl.js"></script>
+  <script src="js/customer-ctrl.js"></script>
+  <script src="js/teaseller-ctrl.js"></script>
+  <script src="js/product-ctrl.js"></script>
+  <script src="js/product-type-ctrl.js"></script>
+  <script src="js/analysis-ctrl.js"></script>
+  <script src="js/userinfo-ctrl.js"></script>
+  <script src="js/crowdsource-ctrl.js"></script>
+  <script src="js/teaselleradd-ctrl.js"></script>
+  <script src="js/customeradd-ctrl.js"></script>
+  <script src="js/barchart-ctrl.js"></script>
+  <script src="js/predict-ctrl.js"></script>
+  <script src="js/crowdfundorder-ctrl.js"></script>
+  <script src="js/crowdsourceorder-ctrl.js"></script>
+  <script src="js/usersim-ctrl.js"></script>
+</head>
+<body  class=" theme-blue" >
+<!--<div class="navbar navbar-default" role="navigation">-->
+  <!--<div class="navbar-header">-->
+    <!--<a class="" href=""><span class="navbar-brand"> 茶行天下</span></a>-->
+  <!--</div>-->
+
+  <!--&lt;!&ndash;sidebar-nav .nav-header .fa-collapse {&ndash;&gt;-->
+  <!--<div class="fa-collapse" style="text-align: right;margin-top: 0.7%;" ng-show="OutShow" ng-controller="LoginCtrl">-->
+    <!--<button  ng-click="logout()" class="btn" style="width: 5%;height:5%;background-color: #428bca;" >退出</button>-->
+  <!--</div>-->
+<!--</div>-->
+
+
+
+<!--<div>-->
+  <!--<a href="#!/">欢迎访问茶行天下管理员系统(本系统仅对系统管理员开放)</a><br>-->
+  <!--<a href="#!/login">登录</a><br>-->
+  <!--<a href="#!/register">注册</a><br>-->
+<!--</div>-->
+<!--<span class="fa fa-paper-plane"></span>?-->
+
+
+<div ng-view ></div>
+
+
+<!--<a href="/">欢迎访问茶行天下管理员系统(本系统仅对系统管理员开放)</a><br>-->
+<!--<a href="views/login.html">登录账户</a><br>-->
+<!--<a href="views/sign-up.html">注册账户</a><br>-->
+<!--<a href="views/teadownload.html">茶农点击进入app下载页面</a><br>-->
+<!--<a href="views/teapurchase.html">消费者点击进入茶叶购买网站</a>-->
+
+</body>
+  <!-- In production use:
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
+  -->
+
+
+</html>

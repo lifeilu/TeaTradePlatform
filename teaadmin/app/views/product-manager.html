@@ -1,0 +1,78 @@
+<div ng-include="'views/left-frame.html'"></div>
+
+
+<div class="content">
+        <div class="header">
+            <h1 class="page-title">茶产品管理</h1>
+            <ul class="breadcrumb">
+                <li><a href="#!/home">主页</a> </li>
+                <li class="active">茶产品管理</a></li>
+            </ul>
+        </div>
+        <tr class="main-content">
+            <!--<div>-->
+                <!--<h3>茶产品查询</h3>-->
+                <!--&lt;!&ndash;<br>&ndash;&gt;-->
+                <!--&lt;!&ndash;<button ng-click="search()"  class="btn btn-primary ">搜索</button>&ndash;&gt;-->
+            <!--</div>-->
+
+            <table st-table="displayedCollection" st-safe-src="rowCollection" class="table table-striped">
+                <thead>
+                <tr>
+                    <!--<th>是否选中</th>-->
+                    <th st-sort="id" style="width: 6%">产品ID</th>
+                    <th st-sort="name" style="width: 8%">产品名称</th>
+                    <th style="width: 8%">图片显示</th>
+                    <th>描述</th>
+                    <th style="width: 8%">产地</th>
+                    <th style="width: 8%">卖家姓名</th>
+                    <th >卖家电话</th>
+                    <th st-sort="state" style="width: 8%">是否上架</th>
+                    <th st-sort="price" style="width: 8%;text-align: right">价格</th>
+
+
+                    <!--<th st-sort="alive" style="width: 8%">是否删除</th>-->
+                    <!--<th style="width: 3.5em;">管理</th>-->
+                </tr>
+                <tr>
+                    <!--<th colspan="2"><input st-search="id" placeholder="产品ID" class="input-sm form-control" type="search"/></th>-->
+                    <th colspan="2"><input st-search="name" placeholder="产品名称" class="input-sm form-control" type="search"/></th>
+                    <!--<th ><input st-search="state" placeholder="是否可用" class="input-sm form-control" type="search"/></th>-->
+                    <!--<th ><input st-search="alive" placeholder="是否删除" class="input-sm form-control" type="search"/></th>-->
+                    <th colspan="9"><input st-search class="input-sm form-control" placeholder="全局搜索" type="text"/></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="row in displayedCollection">
+                    <!--<td><input type="checkbox" ng-true-value="true" ng-false-value="false" ng-model="user.selected" /></td>-->
+                    <td>{{row.id }}</td>
+                    <td>{{row.name}}</td>
+                    <td><img ng-src="{{row.url|myImageUrl}}" style="width:50px;height:50px"></td>
+                    <td>{{row.remark}}</td>
+                    <td style="width: 13%">{{row.locality}}</td>
+                    <td>{{row.teaSaler.name}}</td>
+                    <td>{{row.teaSaler.tel}}</td>
+                    <td>{{row.state | productState}}</td>
+                    <td style="text-align: right">{{row.price | number:0}}元</td>
+
+
+                    <!--<td>{{row.alive | myAlive}}</td>-->
+
+                    <!--<td><a href="" ng-click=""><i class="fa fa-pencil"></i></a></td>-->
+                </tr>
+
+                </tbody>
+                <tfoot>
+                <tr>
+                    <td  colspan="3" ><h3>共{{productNum}}个普通产品</h3></td>
+                    <td colspan="6" class="text-center">
+                        <div st-pagination="" st-items-by-page="itemsByPage" st-displayed-pages="5"></div>
+                    </td>
+                </tr>
+                </tfoot>
+
+            </table>
+        </div>
+
+    <div ng-include="'views/footer.html'"></div>
+</div>

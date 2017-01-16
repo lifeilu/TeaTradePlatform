@@ -1,0 +1,32 @@
+<ion-view view-title="登录" hide-nav-bar="true">
+	<ion-content class="no-scroll">
+	    <!--logo-->
+		<div class="center-middle animated rubberBand" style="margin-top:28%; animation-duration: 1600ms">
+			<img src="img/image.png" width="85%" height="expression{width*109/320}"/>
+		</div>
+		<!--登录注册模块-->
+		<div style="margin-top: 12%; margin-right: auto; margin-left: auto; width: 80%">
+		    <!--用户名-->
+			<div class="green-bottom-border" style="margin-top: 15%; vertical-align: middle">
+				<div style="margin: 0 auto;">
+					<i class="ion-android-call login-icon"></i>
+					<input type="text" class="login-input" placeholder="请填写手机号" ng-model="loginInfo.tel">
+				</div>
+			</div>
+			<!--密码-->
+			<div class="green-bottom-border" style="margin-top: 15%; vertical-align: middle">
+				<div style="margin: 0 auto;">
+					<i class="ion-android-lock login-icon"></i>
+					<input type="password" class="login-input" placeholder="请填写密码" ng-model="loginInfo.password">
+				</div>
+			</div>
+			<div id="loginError" style="height: 20px; color: red; margin-top: 7%" ng-show="loginError.flag"><li>{{loginError.info}}</li></div>
+			<!--登录按钮-->
+			<div class="center-middle" ng-style="{'margin-top': (loginError.flag?'8%':'15%')}">
+				<button class="login-button button button-balanced my-balanced" ng-click="login()">登录</button>
+			</div>
+			<!--注册通道-->
+			<a href="#/register" style="margin-top: 8%; float: right; font-size: 16px" nav-direction="swap" >免费注册</a>
+		</div>
+	</ion-content>
+</ion-view>

@@ -1,0 +1,64 @@
+<div class="container regbox">
+    <div class="my-t-register-box">
+        <div class="row">
+            <div class="">
+                <form class="form-horizontal panel-collapse collapse in" role="form">
+                    <div class="panel-body" id="registerform">
+                        <div class="reg-form">
+                            <div class="form-group row">
+                                <div class="text-center">
+                                    <h1 style="color:#000000">找回密码</h1>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="firstname" class="contrl-label reg-left label-register">手机
+                                    <font color="red">*</font>
+                                </label>
+                                <div class="reg-right">
+                                    <input type="text" class="form-control radius-none" id="firstname" data-ng-model="user.tel" placeholder="请输入手机">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="firstname" class="contrl-label reg-left label-register">新密码
+                                    <font color="red">*</font>
+                                </label>
+                                <div class="reg-right">
+                                    <input type="password" class="form-control radius-none" id="firstname" data-ng-model="user.password" placeholder="请输入密码">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="firstname" class="contrl-label reg-left label-register">确认密码
+                                    <font color="red">*</font>
+                                </label>
+                                <div class="reg-right">
+                                    <input type="password" class="form-control radius-none" id="firstname" data-ng-model="user.password2" placeholder="请再次输入密码">
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="firstname" class="contrl-label reg-left label-register">短信验证
+                                    <font color="red">*</font>
+                                </label>
+                                <div class="reg-right">
+                                    <input type="text" class="form-control radius-none" id="firstname" data-ng-model="code" placeholder="请输入验证码">
+                                </div>
+                                <div class="col-md-2 col-sm-2 col-xs-2">
+                                    <button ng-click="getverification(user.tel)" type="submit" class="btn btn-default radius-none" id="coursebtn">获取验证码</button>
+                                    <!--<button ng-show="!verification" disabled type="submit" class="btn btn-default radius-none" id="coursebtn">请等待{{vertime}}秒</button>-->
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="firstname" class="reg-left control-label cancel-reg label-register"></label>
+                                <div class="reg-right">
+                                    <div style="padding-left:0px;width:100%">
+                                        <button ng-click="confirm()" type="submit" class="btn btn-register radius-none" id="coursebtn">确认找回</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,130 @@
+<ion-view hide-nav-bar="true">
+	<ion-header-bar align-title="center" class="my-nav-bar bar-positive">
+		<button class="button button-clear" ui-sref="tabs.product()" nav-direction="back">
+			<i class="lty-icon ion-android-arrow-back"></i>
+		</button>
+		<h1 class="title">产品详情</h1>
+		<!--<div style="position: absolute; right: 0px">-->
+			<button class="button button-clear" ng-show="!editMode && (!isOnSale)" ng-click="editMode = !editMode" style="position: absolute;top: 5px; right: 5px; bottom: 5px;">
+				<i class="lty-icon ion-compose"></i>
+			</button>
+			<button class="button button-clear" ng-show="editMode && (!isOnSale)" ng-click="editMode = !editMode">
+				<i class="lty-icon ion-ios-undo"></i>
+			</button>
+		<!--</div>-->
+	</ion-header-bar>
+	<ion-content>
+		<div style="margin-right: auto; margin-left: auto; width: 90%; padding-bottom: 5%">
+			<!--<img ng-src="{{portrait}}" style="position:absolute; width: 80px; height: 80px; left:75%" alt="上传产品图片">-->
+			<div class="green-bottom-border register-wrapper">
+				<span>产品类型:</span>
+				<input type="text" ng-model="modifyProductInfo.productType.name" ng-disabled="true">
+			</div>
+			<div class="green-bottom-border register-wrapper">
+				<span>产品名:</span>
+				<input type="text" ng-model="modifyProductInfo.name" ng-disabled="true">
+			</div>
+			<div class="green-bottom-border register-wrapper">
+				<span>描述:</span>
+				<input type="text" ng-model="modifyProductInfo.remark" ng-disabled="true">
+			</div>
+			<div class="green-bottom-border register-wrapper" >
+				<span>质量等级:</span>
+				<!--<div class="item item-input item-select" style="display: inline-block">-->
+				<input type="text" ng-value="modifyProductInfo.level | level" ng-disabled="true">
+				<!--</div>-->
+			</div>
+			<div class="green-bottom-border register-wrapper">
+				<span>产地:</span>
+				<input type="text" ng-model="modifyProductInfo.locality " ng-disabled="true">
+			</div>
+			<div class="green-bottom-border register-wrapper">
+				<span>库存:</span>
+				<input type="number" min="0" placeholder="单位:两" ng-model="modifyProductInfo.stock" ng-disabled="!editMode || isOnSale">
+			</div>
+			<div class="green-bottom-border register-wrapper">
+				<span>起售数量:</span>
+				<input type="number" min="0" placeholder="单位:两" ng-model="modifyProductInfo.startNum" ng-disabled="!editMode || isOnSale">
+			</div>
+			<div class="green-bottom-border register-wrapper">
+				<span>单价:</span>
+				<input type="number" min="0" step="0.001" placeholder="元/两" ng-model="modifyProductInfo.price" ng-disabled="!editMode || isOnSale">
+			</div>
+			<div class="green-bottom-border register-wrapper">
+				<span>折扣:</span>
+				<input type="number" min="0" step="0.01" placeholder="0~1之间,最多2位小数" ng-model="modifyProductInfo.discount" ng-disabled="!editMode || isOnSale">
+			</div>
+			<div class="green-bottom-border register-wrapper">
+				<span>发货间隔:</span>
+				<input type="number" min="0" placeholder="单位:天" ng-model="modifyProductInfo.deliverLimit" ng-disabled="!editMode || isOnSale">
+			</div>
+			<div class="green-bottom-border register-wrapper">
+				<span style="padding-bottom: 11px">是否包邮:</span>
+				<ion-toggle ng-model="modifyProductInfo.isFree" ng-true-value="1" ng-false-value="0" ng-disabled="!editMode || isOnSale">
+				</ion-toggle>
+			</div>
+			<div class="green-bottom-border register-wrapper" ng-show="modifyProductInfo.isFree == 0" >
+				<span>邮费:</span>
+				<input type="number" min="0" placeholder="大于0,最多2位小数, 单位:元" ng-model="modifyProductInfo.postage" ng-disabled="!editMode || isOnSale">
+			</div>
+			<!--<div>-->
+			<!--<li class="item item-toggle">-->
+			<!--HTML5-->
+			<!--<label class="toggle toggle-positive">-->
+			<!--<input type="checkbox" checked="">-->
+			<!--<div class="track">-->
+			<!--<div class="handle"></div>-->
+			<!--</div>-->
+			<!--</label>-->
+			<!--</li>-->
+			<!--</div>-->
+			<div style="height: 20px; margin-top: 2%; color:red" ng-show="errorModifyProduct.flag" ><li>{{errorModifyProduct.info}}</li></div>
+
+			<div style="text-align: center; margin-top: 3%" ng-style="{'margin-top': (errorModifyProduct.flag?'3%':'5%')}">
+				<button class="button button-clear" style="color: #4AA53D; display: inline-block; width: 32%; padding: 0px; font-size: 15px" ng-show="editMode && (!isOnSale)" ng-click="modifyProduct()">保存修改信息</button>
+				<button class="button button-clear" style="color: #4AA53D; display: inline-block; width: 32%; padding: 0px; font-size: 15px" ng-click="homePicModal.show()">首页图片{{(editMode && (!isOnSale))?'编辑':'预览'}}</button>
+				<button class="button button-clear" style="color: #4AA53D; display: inline-block; width: 32%; padding: 0px; font-size: 15px" ng-click="detailPicModal.show()">详情图片{{(editMode && (!isOnSale))?'编辑':'预览'}}</button>
+			</div>
+		</div>
+	</ion-content>
+</ion-view>
+<script id="templates/homePic.html" type="text/ng-template">
+	<ion-modal-view>
+		<ion-view hide-nav-bar="true">
+			<ion-header-bar align-title="center" class="my-nav-bar bar-positive">
+				<button class="button button-clear" ng-click="homePicModal.hide()" nav-direction="back">
+					<i class="lty-icon ion-android-arrow-back"></i>
+				</button>
+				<h1 class="title">首页图片{{(editMode && (!isOnSale))?'编辑':'预览'}}</h1>
+				<button class="button button-clear" ng-click="uploadPic(modifyProductInfo.id, 1)" ng-show="editMode && (!isOnSale)">
+					<i class="lty-icon ion-plus"></i>
+				</button>
+			</ion-header-bar>
+			<ion-content class="padding">
+				<img ng-src="{{modifyProductInfo.url | productImageUrl}}" style="max-height: 100%; max-width: 100%">
+			</ion-content>
+		</ion-view>
+	</ion-modal-view>
+</script>
+<script id="templates/detailPic.html" type="text/ng-template">
+	<ion-modal-view>
+		<ion-view hide-nav-bar="true">
+			<ion-header-bar align-title="center" class="my-nav-bar bar-positive">
+				<button class="button button-clear" ng-click="detailPicModal.hide()" nav-direction="back">
+					<i class="lty-icon ion-android-arrow-back"></i>
+				</button>
+				<h1 class="title">详情图片{{(editMode && (!isOnSale))?'编辑':'预览'}}</h1>
+				<button class="button button-clear" ng-click="uploadPic(modifyProductInfo.id, 0)" ng-show="editMode && (!isOnSale)">
+					<i class="lty-icon ion-plus"></i>
+				</button>
+			</ion-header-bar>
+			<ion-content class="padding">
+				<div ng-repeat="picture in detailPic" class="multipleImageWrapper">
+					<div>
+						<img ng-src="{{picture.url | productImageUrl}}" on-hold="showDeleteConfirm(picture)">
+					</div>
+				</div>
+			</ion-content>
+		</ion-view>
+	</ion-modal-view>
+</script>

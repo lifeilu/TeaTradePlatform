@@ -1,0 +1,57 @@
+<div ng-include="'views/header.html'"></div>
+<div class="sidebar-nav" >
+    <ul>
+        <li>
+            <a href="#!/home" data-target=".dashboard-menu" class="nav-header collapsed" data-toggle="collapse"> 主页 <i class="fa fa-collapse"></i></a>
+        </li>
+
+        <li>
+            <a href="" data-target=".dashboard-menu"  class="nav-header collapsed"> 用户管理 </a>
+        </li>
+        <li>
+            <ul  id="collapse1"  class="dashboard-menu nav nav-list collapse in">
+                <li ><a href="#!/teaseller" ><span class="fa fa-caret-right"></span> 茶农管理 </a></li>
+                <li ><a href="#!/customer" ><span class="fa fa-caret-right"></span> 消费者管理</a></li>
+                <li ><a href="#!/register"><span class="fa fa-caret-right"></span> 管理员添加 </a></li>
+                <li ><a href="#!/userInfo"><span class="fa fa-caret-right"></span> 管理员中心 </a></li>
+            </ul>
+        </li>
+
+        <li>
+            <a href="" data-target=".dashboard-menu" class="nav-header collapsed" > 产品管理 </a>
+        </li>
+        <li>
+            <ul  id="collapse2" class="dashboard-menu nav nav-list collapse in">
+                <li ><a href="#!/productType" ><span class="fa fa-caret-right"></span> 茶产品类型管理 </a></li>
+                <li ><a href="#!/product" ><span class="fa fa-caret-right"></span> 普通产品管理 </a></li>
+                <li ><a href="#!/crowdFund"><span class="fa fa-caret-right"></span> 众筹产品管理</a></li>
+                <li ><a href="#!/crowdSource"><span class="fa fa-caret-right"></span> 众包产品管理</a></li>
+
+            </ul>
+        </li>
+
+        <li>
+            <a href="" data-target=".dashboard-menu" class="nav-header collapsed" > 订单管理 </a>
+        </li>
+        <li>
+            <ul  id="collapse3" class="dashboard-menu nav nav-list collapse in">
+                <li ><a href="#!/order" ><span class="fa fa-caret-right"></span> 普通订单管理 </a></li>
+                <li ><a href="#!/crowdFundOrder"><span class="fa fa-caret-right"></span> 众筹订单管理</a></li>
+                <li ><a href="#!/crowdSourceOrder"><span class="fa fa-caret-right"></span> 众包订单管理</a></li>
+            </ul>
+        </li>
+
+        <li>
+            <a href="" data-target=".dashboard-menu" class="nav-header collapsed" > 数据分析 </a>
+        </li>
+        <li>
+            <ul  id="collapse4" class="dashboard-menu nav nav-list collapse in">
+                <li ><a href="#!/analysis"><span class="fa fa-caret-right"></span> 订单统计 </a></li>
+                <li ><a href="#!/userSim"><span class="fa fa-caret-right"></span> 用户分析 </a></li>
+                <li ><a href="#!/prediction"><span class="fa fa-caret-right"></span> 价格预测 </a></li>
+
+            </ul>
+        </li>
+
+    </ul>
+</div>

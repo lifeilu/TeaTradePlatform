@@ -1,0 +1,157 @@
+<ion-view hide-nav-bar="true">
+	<ion-header-bar align-title="center" class="my-nav-bar bar-positive" scroll-to-top>
+		<button class="button button-clear" ng-click="showFilter = !showFilter">{{{true: '筛选', false:'收起'}[!showFilter]}}</button>
+		<h1 class="title" >众包列表</h1>
+	</ion-header-bar>
+	<ion-content on-swipe-left="toRightTab()" on-swipe-right="toLeftTab()">
+		<div class="search-list" ng-show="showFilter" id="ZBSearch">
+			<div class="search-item">
+				<div class="search-element">参与情况: &nbsp</div>
+				<div class="search-element" ng-click="filter.participate = false; filter.state = 0; filter.send = -1" ng-class="{false: 'search-selected'}[filter.participate]">
+					未参与
+				</div>
+				<div class="search-element" ng-click="filter.participate = true; filter.state = -1; filter.send = -1" ng-class="{true: 'search-selected'}[filter.participate]">
+					已参与
+				</div>
+			</div>
+			<div class="search-item">
+				<div class="search-element">质量等级: &nbsp</div>
+				<div class="search-element" ng-click="filter.level = -1;" ng-class="{true: 'search-selected'}[filter.level == -1]">
+					全部
+				</div>
+				<div class="search-element" ng-click="filter.level = 3;" ng-class="{true: 'search-selected'}[filter.level == 3]">
+					上等
+				</div>
+				<div class="search-element" ng-click="filter.level = 2;" ng-class="{true: 'search-selected'}[filter.level == 2]">
+					中等
+				</div>
+				<div class="search-element" ng-click="filter.level = 1;" ng-class="{true: 'search-selected'}[filter.level == 1]">
+					一般
+				</div>
+			</div>
+			<div class="search-item">
+				<div class="search-element">茶叶类型: &nbsp</div>
+				<div class="search-element" ng-click="filter.type = -1;" ng-class="{true: 'search-selected'}[filter.type == -1]">
+					全部
+				</div>
+				<div class="search-element" ng-click="filter.type = 1;" ng-class="{true: 'search-selected'}[filter.type == 1]">
+					红茶
+				</div>
+				<div class="search-element" ng-click="filter.type = 2;" ng-class="{true: 'search-selected'}[filter.type == 2]">
+					绿茶
+				</div>
+				<div class="search-element" ng-click="filter.type = 3;" ng-class="{true: 'search-selected'}[filter.type == 3]">
+					普洱茶
+				</div>
+				<div class="search-element" ng-click="filter.type = 4;" ng-class="{true: 'search-selected'}[filter.type == 4]">
+					乌龙茶
+				</div>
+				<div class="search-element" ng-click="filter.type = 5;" ng-class="{true: 'search-selected'}[filter.type == 5]">
+					玫瑰花茶
+				</div>
+			</div>
+			<div class="search-item" ng-show="filter.participate == true">
+				<div class="search-element">众包状态: &nbsp</div>
+				<div class="search-element" ng-click="filter.state = -1; filter.send = -1" ng-class="{true: 'search-selected'}[filter.state == -1]">
+					全部
+				</div>
+				<div class="search-element" ng-click="filter.state = 3; filter.send = -1" ng-class="{true: 'search-selected'}[filter.state == 3]">
+					进行中
+				</div>
+				<div class="search-element" ng-click="filter.state = 0; filter.send = -1" ng-class="{true: 'search-selected'}[filter.state == 0]">
+					募集中
+				</div>
+				<div class="search-element" ng-click="filter.state = 2; filter.send = -1" ng-class="{true: 'search-selected'}[filter.state== 2]">
+					已取消
+				</div>
+				<div class="search-element" ng-click="filter.state = 1; filter.send = -1" ng-class="{true: 'search-selected'}[filter.state == 1]">
+					已完成
+				</div>
+			</div>
+			<div class="search-item" ng-show="filter.participate == true && filter.state == 3">
+				<div class="search-element">发货状态: &nbsp</div>
+				<div class="search-element" ng-click="filter.send = -1;" ng-class="{true: 'search-selected'}[filter.send == -1]">
+					全部
+				</div>
+				<div class="search-element" ng-click="filter.send = 0;" ng-class="{true: 'search-selected'}[filter.send == 0]">
+					待发货
+				</div>
+				<div class="search-element" ng-click="filter.send = 1;" ng-class="{true: 'search-selected'}[filter.send == 1]">
+					已发货
+				</div>
+				<div class="search-element" ng-click="filter.send = 2;" ng-class="{true: 'search-selected'}[filter.send == 2]">
+					已收货
+				</div>
+			</div>
+			<div class="search-item">
+				<div style="font-size: 12px; color: rgba(0 ,0, 0, 0.8); display: flex; height: 22px">
+					<div style="display: inline-block">搜索内容: &nbsp</div>
+					<input type="text" style="display: inline-block; border-bottom: 1px #4AA53D solid; height: auto; flex: auto" ng-model="filter.custom">
+				</div>
+			</div>
+
+		</div>
+		<ion-refresher pulling-text="下拉刷新" on-refresh="refreshZB()" class="lty-refresher"></ion-refresher>
+		<div class="card ZB-card" ng-repeat="ZB in ZBs | ZBSearch: filter | filter: filter.custom">
+			<div class="item item-divider">
+				<div class="ZB-product-name">{{ZB.product.name}}</div>
+				<div class="ZB-label">&nbsp&nbsp&nbsp众包</div>
+				<div class="ZB-state" ng-show="ZB.state == 0">募集中<ion-spinner icon="dots" class="spinner-balanced"></ion-spinner></div>
+				<div class="ZB-state" style="color: rgba(0,0,0,0.5)" ng-show="ZB.state == 2">已取消</div>
+				<div class="ZB-state" style="color: rgba(0,0,0,0.5)" ng-show="ZB.state == 1">已完成</div>
+				<div class="ZB-state" ng-show="ZB.state == 3 && ZB.order != undefined && ZB.order.isSend == 0">待发货</div>
+				<div class="ZB-state" ng-show="ZB.state == 3 && ZB.order != undefined && ZB.order.isSend == 1 && ZB.order.isConfirm == 0">已发货</div>
+				<div class="ZB-state" ng-show="ZB.state == 3 && ZB.order != undefined && ZB.order.isConfirm == 1">已收货</div>
+
+			</div>
+			<div class="item item-text-wrap" style="padding-right: 0;">
+				<img ng-src="{{ZB.product.url | productImageUrl}}" style="position:absolute; max-height: 60px; max-width: 60px; display: inline-block; width: 100%; height: 100%; /*top: 50%; transform: translateY(-50%);*/">
+				<div class="ZB-customer-name-tel">{{ZB.customer.nickname + '&nbsp&nbsp&nbsp' + ZB.customer.tel}}</div>
+				<div class="ZB-customer-zip">邮编 {{ZB.customer.zip}}</div>
+				<div class="ZB-customer-address">地址 {{ZB.customer.address}}</div>
+				<div class="ZB-product-level">{{"质量等级&nbsp&nbsp" + (ZB.product.level |level)}}</div>
+				<div class="ZB-product-unit">{{"共" + ZB.totalNum + "份&nbsp&nbsp" + ZB.unitNum + "两/份&nbsp&nbsp" + "￥" + ZB.unitMoney + "/份&nbsp&nbsp&nbsp" + "定金￥" + ZB.earnest + "/份"}}</div>
+				<div class="ZB-progress" style="padding-right: 0">
+					进度
+					<div style="width:85%; display: inline-block">
+						<div class="ZB-progress-container" style="width: 75%; display: inline-block">
+							<div class="ZB-progress-caption">{{(ZB.totalNum - ZB.remainderNum) + "份"}}</div>
+							<div class="ZB-progress-bar" ng-style="{'width': ((ZB.totalNum - ZB.remainderNum) / ZB.totalNum * 100) + '%' }"></div>
+						</div>
+						<div style="display: inline-block;">{{ZB.totalNum + "份"}}</div>
+					</div>
+				</div>
+				<div class="ZB-date">
+					截止时间&nbsp&nbsp{{ZB.dealDate.substr(0, 10)}}
+					&nbsp&nbsp&nbsp还剩&nbsp
+					{{ZB.dealDate | restDay}}&nbsp天
+				</div>
+				<div class="ZB-date">
+					发货时间&nbsp&nbsp{{ZB.deliverDate.substr(0, 10)}}
+					&nbsp&nbsp&nbsp还剩&nbsp
+					{{ZB.deliverDate| restDay}}&nbsp天
+				</div>
+				<div class="ZB-date" ng-show="ZB.order.wuliu != undefined && ZB.order.wuliu != null && ZB.order.wuliu != ''">
+					物流单号: {{ZB.order.wuliu}}
+				</div>
+
+			</div>
+			<div class="item item-divider">
+				<div style="display: inline-block"></div>
+				<div style="text-align: right; display: inline-block; float: right;" ng-show="ZB.order == undefined && ZB.state == 0">
+					<button ng-click="participateZB(ZB)" >参与众包</button>
+				</div>
+				<div style="text-align: right; display: inline-block; float: right;" ng-show="ZB.order != undefined && ZB.order.state == 3 && ZB.state == 0">
+					<button ng-click="participateZB(ZB)" >参与众包</button>
+				</div>
+				<div style="text-align: right; display: inline-block; float: right;" ng-show="ZB.order != undefined && ZB.state == 3 && ZB.order.isSend == 0">
+					<button ng-click="sendZB(ZB)">&nbsp发&nbsp&nbsp货&nbsp</button>
+				</div>
+				<div style="text-align: right; display: inline-block; float: right;" ng-show="ZB.order != undefined && ZB.order.state != 3 && ZB.state == 0">
+					<button ng-click="cancelZB(ZB)">取消参与</button>
+				</div>
+
+			</div>
+		</div>
+	</ion-content>
+</ion-view>

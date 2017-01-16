@@ -1,0 +1,29 @@
+{"name":"bubble", "children": [
+  {"name":"用户","description":"Atlas of Global Agriculture",
+    "children":[
+      {"name": "茶农","address":"#!/teaseller", "note":""},
+      {"name": "消费者","address":"#!/customer", "note":""},
+      {"name": "管理员","address":"#!/userInfo", "note":""}
+    ]},
+  {"name":"产品", "description":"Profiles of Country",
+    "children":[
+      {"name":"产品类型","address":"#!/productType","note":""},
+      {"name":"普通产品","address":"#!/product","note":""},
+      {"name":"众筹产品","address":"#!/crowdFund","note":""},
+      {"name":"众包产品","address":"#!/crowdSource","note":""}
+    ]},
+  {"name": "订单", "description": "Virtual Lab of Global Agriculture",
+    "children":[
+      {"name":"普通订单","address":"#!/order","note":""},
+      {"name":"众筹订单","address":"#!/crowdFundOrder", "note":""},
+      {"name":"众包订单","address":"#!/crowdSourceOrder","note":""}
+    ]},
+
+  {"name":"数据分析", "description":"Crop Data in 5 minutes grid",
+    "children":[
+      {"name":"订单数据","address":"#!/analysis","note":""},
+      {"name":"用户分析","address":"#!/userSim","note":""},
+      {"name":"价格预测","address":"#!/prediction","note":""}
+
+    ]}
+]}

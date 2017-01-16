@@ -1,0 +1,96 @@
+<div class="user-mynavbar" style=""><a class="top-link" href="#">个人中心 > 我的众包</a>
+</div>  
+    <div style="border:1px solid;border-color:rgba(0,0,0,.1);padding:0px 10px;" class="panel-group"
+         id="accordion">
+        <div class="panel panel-default" id="orderpanel">
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div style="height:auto">
+                        <div class="row recommend-nav">
+                            <div class="col-md-10 col-sm-10 col-xs-10 bigtitle">
+                                <!--<img src="images/add/aishangtaoke.svg">-->
+                                全部众包
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+
+            </div>  
+            <div class="row">
+                <div ng-repeat="order in orders | orderBy:'-orderEn.id'">
+                    <div>
+                        <div class="col-md-2 col-xs-2 col-sm-2" style="margin-bottom: 10px;font-size: 18px">{{order.teaSaler.name}}</div>
+                        <div class="col-md-3 col-xs-3 col-sm-3" style="margin-bottom: 10px;font-size: 18px">{{order.createDate}}</div>
+                        <div class="col-md-3 col-xs-3 col-sm-3" style="margin-bottom: 10px;font-size: 18px">总价:{{order.totalPrice}}元</div>
+                        <div class="col-md-4 col-xs-4 col-sm-4" style="margin-bottom: 10px;font-size: 18px" ng-show = "order.isSend">物流单号:{{order.wuliu}}</div>
+                    </div>
+                    <table class="myorder col-md-9 col-xs-9 col-sm-9" style="word-break:normal; word-wrap:break-all;">
+                      <tr>
+                        <td style="color:#B0C330;width:300px">茶叶图片</td>
+                        <td style="color:#B0C330;width:200px">茶叶名称</td>
+                        <td style="color:#B0C330;width:150px">定金</td>
+                        <td style="color:#B0C330;width:150px">金额</td>
+                        <td style="color:#B0C330;width:150px">数量</td>
+                        <!--<td style="color:#B0C330;width:200px">状态</td>-->
+                      </tr>
+                      <tr >
+                        <td>
+                          <img style="width:200px;height:150px" src="/api/image/getByUrl?url={{order.crowdSourcing.product.url}}">
+                        </td>
+                        <td width="200px">
+                          {{order.crowdSourcing.product.name}}
+                        </td>
+                        <td width="150px">
+                          <span>{{order.crowdSourcing.earnest}}元/份</span>
+                        </td>
+                        <td width="150px">
+                          <span>{{order.crowdSourcing.unitMoney}}元/份</span>
+                        </td>
+                        <td width="150px">
+                          <span>{{order.num}}份</span>
+                        </td>
+                      </tr>
+                    </table>
+                    <table class="myorder col-md-2 col-xs-2 col-sm-2">
+                      <tr>
+                        <td style="color:#B0C330;width:100px">订单状态</td>
+                      </tr>
+                      <tr>
+                        <td>&nbsp</td>
+                      </tr>
+                      <tr>
+                        <td ng-show = "order.state==3" style = "font-size: 18px;line-height:30px">已取消</td>
+                      </tr>
+                      <tr>
+                        <td ng-show = "order.state!=3&&order.crowdSourcing.state==2" style = "font-size: 18px;line-height:30px">众包失败</td>
+                      </tr> 
+                      <tr>
+                        <td ng-show = "order.state!=3&&order.crowdSourcing.state!=2&&!order.isSend" style = "font-size: 18px;line-height:30px">待发货</td>
+                      </tr>                      
+                      <tr>
+                        <td ng-show = "order.state!=3&&order.isSend&&(!order.isConfirm)" style = "font-size: 18px;line-height:30px">待确认</td>
+                      </tr>
+                      <tr>
+                        <td ng-show = "order.state!=3&&order.isSend&&order.isConfirm"style = "font-size: 18px;line-height:30px">已确认</td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <a ng-show = "order.state!=3&&order.isSend&&(!order.isConfirm)" href="#" ng-click = "confirm(order)"; style = "cursor:pointer;font-size: 18px">确认订单</a>
+                        </td>
+                      </tr>
+                    </table> 
+                    <hr class="myorder col-md-12 col-xs-12 col-sm-12">                              
+                </div>  
+            </div>
+    <button ng-disabled="nowPage == 1" class="btn btn-list btn-w-md" ng-click="prev()">上一页</button>
+    <input ng-model = "page" style="width:3%">
+    <button class="btn btn-list btn-w-md" ng-click="jump()">跳转</button>
+    {{nowPage}}
+    /
+    {{totalPage}}
+    <button ng-disabled="nowPage >= totalPage" class="btn btn-list btn-w-md" ng-click="next()">下一页</button>
+  </div>
+</div>
+

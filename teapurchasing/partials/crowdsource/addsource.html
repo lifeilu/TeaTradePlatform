@@ -1,0 +1,164 @@
+<div class="container regbox">
+    <div class="my-t-register-box">
+        <div class="row">
+            <div class="">
+                <form class="form-horizontal panel-collapse collapse in" role="form">
+                    <div class="panel-body" id="sourceform">
+                        <div class="reg-form">
+                            <div class="form-group row">
+                                <div class="text-center">
+                                    <h1 style="color:#000000">发起众包</h1>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="firstname" class="contrl-label reg-left label-register">产品名
+                                    <font color="red">*</font>
+                                </label>
+                                <div class="reg-right">
+                                    <input type="text" class="form-control radius-none" id="firstname" data-ng-model="product.name" placeholder="请输入产品名" required>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="firstname" class="contrl-label reg-left label-register">级别
+                                    <font color="red">*</font>
+                                </label>
+                                <div class="reg-right">
+		                      		<select class="source-select form-control" style = "border-color: #333;" data-ng-model="level" ng-options="level.name for level in levels" required>
+		                      		</select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="firstname" class="contrl-label reg-left label-register">类别
+                                    <font color="red">*</font>
+                                </label>
+                                <div class="reg-right">
+			                      <select class="source-select form-control" style = "border-color: #333;" data-ng-model="productcategory" ng-options="productcategory.name for productcategory in productcategorys" required>
+			                      </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="firstname" class="contrl-label reg-left label-register">产地
+                                    <font color="red">*</font>
+                                </label>
+                                <div class="reg-right">
+                                    <input type="text" class="form-control radius-none"  maxlength="15" id="firstname" data-ng-model="product.locality" placeholder="请输入产地" required>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="firstname" class="contrl-label reg-left label-register">每份定金(元)
+                                    <font color="red">*</font>
+                                </label>
+                                <div class="reg-right">
+                                    <input type="number" class="form-control radius-none" id="firstname" data-ng-model="source.earnest" placeholder="请输入定金" required>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="firstname" class="contrl-label reg-left label-register">每份金额(元)
+                                    <font color="red">*</font>
+                                </label>
+                                <div class="reg-right">
+                                    <input type="number" class="form-control radius-none" id="firstname" data-ng-model="source.unitMoney" placeholder="请输入金额" required>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="firstname" class="contrl-label reg-left label-register">每份数量(两)
+                                    <font color="red">*</font>
+                                </label>
+                                <div class="reg-right">
+                                    <input type="number" class="form-control radius-none" id="firstname" data-ng-model="source.unitNum" placeholder="请输入数量" required>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="firstname" class="contrl-label reg-left label-register">总数量(份)
+                                    <font color="red">*</font>
+                                </label>
+                                <div class="reg-right">
+                                    <input type="number" class="form-control radius-none" id="firstname" data-ng-model="source.totalNum" placeholder="请输入数量" required>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="firstname" class="contrl-label reg-left label-register">众包结束时间
+                                    <font color="red">*</font>
+                                </label>
+                                <div class="reg-right">
+								    <div ng-repeat="time in [{
+								        in:[
+								          {attr:'time',options:{}},
+								        ]},
+								      ] track by $index" >
+								      <div class="row">
+								        <div class="col-md-6 cover-datepicker" ng-repeat="attr in time.in">
+								          <p class="input-group" style = "width: 300px">
+								            <input type="text" class="form-control input-sm" datepicker-popup="{{format}}"
+								             ng-model="dealDate[attr.attr]" is-open="attr.options.opened" min-date="minDate"
+								              datepicker-options="dateOptions" 
+								               ng-required="true" close-text="Close" />
+								            <span class="input-group-btn">
+								              <button type="button" class="btn btn-default cover-btn-tn"
+								              ng-click="openfinish($event,attr.options)"><i class="glyphicon glyphicon-calendar"></i></button>
+								            </span>
+								          </p>
+								        </div>
+								      </div>
+								    </div>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="firstname" class="contrl-label reg-left label-register">发货时间
+                                    <font color="red">*</font>
+                                </label>
+                                <div class="reg-right">
+								    <div ng-repeat="time in [{
+								        in:[
+								          {attr:'time',options:{}},
+								        ]},
+								      ] track by $index" >
+								      <div class="row">
+								        <div class="col-md-6 cover-datepicker" ng-repeat="attr in time.in">
+								          <p class="input-group" style = "width: 300px">
+								            <input type="text" class="form-control input-sm" datepicker-popup="{{format}}"
+								             ng-model="deliverDate[attr.attr]" is-open="attr.options.opened" min-date="minDate2"
+								              datepicker-options="dateOptions" 
+								               ng-required="true" close-text="Close" />
+								            <span class="input-group-btn">
+								              <button type="button" class="btn btn-default cover-btn-tn"
+								              ng-click="opensend($event,attr.options)"><i class="glyphicon glyphicon-calendar"></i></button>
+								            </span>
+								          </p>
+								        </div>
+								      </div>
+								    </div>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="firstname" class="contrl-label reg-left label-register">描述
+                                    <font color="red">*</font>
+                                </label>
+                                <div class="reg-right">
+                                    <textarea name="description" class="form-control" style = "height: 50px;border-color: #333;" type="text" ng-model="content" required></textarea>
+                                    <!--<input type="text" class="form-control radius-none" style = "height: 34px;" id="firstname" data-ng-model="product.remark" placeholder="请输入描述">-->
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="firstname" class="contrl-label reg-left label-register">上传主图&nbsp
+                                </label>
+                                <label for="avatar-student" class="reg-right" ng-click="readAvatar()">
+                                    <input type="file" ngf-select ng-model = "picfile" name="file" id="avatar-student" class="pos-a top-1000"/>
+                                    <img class="avatar" id = "img-source" src="/images/tea.jpg"/>
+                                </label>
+                            </div>
+                            <div class="form-group row">
+                                <label for="firstname" class="reg-left control-label cancel-reg label-register"></label>
+                                <div class="reg-right">
+                                    <div style="padding-left:0px;width:100%">
+                                        <button ng-click="confirm()" type="submit" class="btn btn-register radius-none" id="coursebtn">确认众包</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

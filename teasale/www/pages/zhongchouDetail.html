@@ -1,0 +1,108 @@
+<ion-modal-view>
+	<ion-view hide-nav-bar="true">
+		<ion-header-bar align-title="center" class="my-nav-bar bar-positive">
+			<button class="button button-clear" ng-click="ZCDetailModal.remove()" nav-direction="back">
+				<i class="lty-icon ion-android-arrow-back"></i>
+			</button>
+			<h1 class="title">众筹详情</h1>
+		</ion-header-bar>
+		<ion-content class="has-header">
+
+			<svg id="fillgauge1" width="100%" height="150" style="margin-top: 30px" liquid-angular liquid-value="((ZCDetailInfo.totalNum-ZCDetailInfo.remainderNum) / ZCDetailInfo.totalNum * 100).toFixed(0)"></svg>
+			<div style="width: 100%; margin-top: 20px; text-align: center">
+				<div class="ZC-general-info">
+					<div class="number" count-up end-val="ZCDetailInfo.joinNum" options="{useEasing:false,useGrouping: false}"></div>
+					<div class="text">人, 已参与</div>
+				</div>
+				<div class="ZC-general-info">
+					<div class="number" count-up end-val="(ZCDetailInfo.totalNum-ZCDetailInfo.remainderNum)" options="{useEasing:false,useGrouping: false}"></div>
+					<div class="text">份, 已销售</div>
+				</div>
+				<div class="ZC-general-info">
+					<div class="number" count-up end-val="(ZCDetailInfo.totalNum-ZCDetailInfo.remainderNum) * ZCDetailInfo.unitMoney" options="{useEasing:false,useGrouping: false}"></div>
+					<div class="text">元, 已筹集</div>
+				</div>
+			</div>
+			<div class="list">
+				<div class="item item-divider">
+					基本信息
+				</div>
+				<label class="item item-input">
+					<span class="input-label">众筹名称：</span>
+					<input type="text" disabled="disabled"
+					       ng-value="ZCDetailInfo.product.name + '  ' + (ZCDetailInfo.product.level | level) + '  ' + (ZCDetailInfo.type | ZCType)">
+				</label>
+				<label class="item item-input">
+					<span class="input-label">每份数量：</span>
+					<input type="text" disabled="disabled"
+					       ng-value="ZCDetailInfo.unitNum + '两'">
+				</label>
+				<label class="item item-input">
+					<span class="input-label">每份售价：</span>
+					<input type="text" disabled="disabled"
+					       ng-value="'￥' + ZCDetailInfo.unitMoney">
+				</label>
+				<label class="item item-input" ng-show="ZCDetailInfo.type == 1">
+					<span class="input-label">每份定金：</span>
+					<input type="text" disabled="disabled"
+					       ng-value="'￥' + ZCDetailInfo.earnest">
+				</label>
+				<label class="item item-input">
+					<span class="input-label">总份数：</span>
+					<input type="text" disabled="disabled"
+					       ng-value="ZCDetailInfo.totalNum">
+				</label>
+				<label class="item item-input">
+					<span class="input-label">众筹结束时间：</span>
+					<input type="text" disabled="disabled"
+					       ng-value="ZCDetailInfo.dealDate.substring(0, 10)">
+				</label>
+				<label class="item item-input">
+					<span class="input-label">开始发货时间：</span>
+					<input type="text" disabled="disabled"
+					       ng-value="ZCDetailInfo.deliverDate.substring(0, 10)">
+				</label>
+				<label class="item item-input" ng-show="ZCDetailInfo.type == 1">
+					<span class="input-label">缴纳尾款时间：</span>
+					<input type="text" disabled="disabled"
+					       ng-value="ZCDetailInfo.payDate.substring(0, 10)">
+				</label>
+				<div class="item item-divider">
+					众筹订单
+				</div>
+				<div class="card order-card ZCOrder" ng-repeat="order in ZCOrders">
+					<div class="item item-divider" style="position: relative;">
+						订单{{$index + 1}}&nbsp&nbsp
+						<i class="ion-person" style="color: #4AA53D"></i>
+						{{order.customer.nickname | maxLength:3}}
+						{{order.tel}}
+
+						<div style="position: absolute; right: 8px; top: 10px" ng-style="{true:{'color':'#4AA53D'}}[order.isConfirm == 0 && order.state != 3]">{{order | orderState}}</div>
+					</div>
+					<div class="item item-text-wrap">
+						<ion-list class="lty-list">
+							<ion-item style="padding-top: 8px">
+								<div style="margin-top: 8px; margin-bottom: 8px">
+									<h3 style="color: #777777">购买量: {{order.num}} 份, 共 {{order.num * order.crowdFunding.unitNum}} 两</h3>
+									<h3 style="color: #777777">总价: {{order.totalPrice}} 元</h3>
+									<h3 style="color: #777777">邮编: {{order.zip}} </h3>
+									<h3 style="color: #777777">地址: {{order.address}} </h3>
+									<h3 style="color: #777777" ng-show="order.wuliu != undefined && order.wuliu != null">物流单号: {{order.wuliu}} </h3>
+								</div>
+							</ion-item>
+						</ion-list>
+					</div>
+					<div class="item item-divider">
+						<div style="display: inline-block; vertical-align: sub">
+							{{order.createDate | myDate}}
+						</div>
+						<div style="display: inline-block; float: right">
+							<button ng-click="sendZCOrder(order)" ng-if="(order.isSend == 0 && order.state == 1 && order.crowdFunding.type == 0) || (order.isSend == 0 && order.state == 1 && order.crowdFunding.type == 1 && order.refund_state == 1)">发货</button>
+							<!--<button ng-click="deleteOrder(order)" ng-if="order.orderEn.isConfirm == 1">删除订单</button>-->
+						</div>
+					</div>
+				</div>
+			</div>
+		</ion-content>
+	</ion-view>
+</ion-modal-view>

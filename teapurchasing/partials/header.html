@@ -1,0 +1,70 @@
+<nav class="navbar navbar-inverse" role="banner">
+    <div style="margin:auto;width:1420px;padding-top:15px;padding-left:30px;padding-right:30px">
+        <div class="navbar-brand" href="#">
+            <img src="images/logo.png" width=30px height=30px alt="tb" class="img-width-18">
+            <img src="images/logo1.png" width=80px height=32px alt="logo" class="img-width-50">
+        </div>
+
+        <div class="navbar-left phone-items" style="margin:0;">
+            <ul class="nav navbar-nav" style="font-size: 18px;padding: 0px 12px;float:left;margin:0;">
+                <li class="fl-left" >
+                    <a ui-sref="main.home" class="phone-item">首页</a>
+                </li>
+                <li class="fl-left" >
+                    <a ui-sref="fund.list" class="phone-item">众筹模式</a>
+                </li>
+                <li class="fl-left" >
+                    <a ui-sref="sourcelist" class="phone-item">我的众包</a>
+                </li>
+            </ul>
+        </div>
+        <div class="fl-right btn out-button">
+            <div ng-if="currentUser!= null">
+                <button ng-click="logout()" class="btn btn-inverse">退出</button>
+            </div>
+            <div ng-if="currentUser== null">
+                <button ng-click="login()" class="btn btn-inverse">登录</button>
+            </div>
+        </div>
+
+
+        <div class="fl-right mr-left-icon">
+
+            <div ng-if="currentUser!=null && currentUser.account.headURL == null">
+                <div >
+                    <a ui-sref="user.userinfo"><img width=35px height=35px
+                                                       src="images/user.png" class="img-width-25"></a>
+                </div>
+            </div>
+            <div ng-if="currentUser.account.headURL != null">
+                <div >
+                    <a ui-sref="user.userinfo"> <img width=35px height=35px
+                                                        src="/api/image/getByUrl?url={{currentUser.account.headURL}}" class="img-width-25"></a>
+                </div>
+            </div>
+
+        </div>
+        
+        <div id="sb-search" class="sb-search">
+            <form ng-submit="searchbook()">
+                <input class="sb-search-input" placeholder="请输入名称" type="search"
+                       value="" name="search" id="search"
+                       ng-model="searchthebook.thename">
+                <input class="sb-search-submit" type="submit" value="">
+                <span class="sb-icon-search" class="img-width-25"></span>
+            </form>
+        </div>
+        <div>
+            <a ui-sref="main.cart"> <img width=35px height=35px
+                                                src="/images/cart.png" class="img-width-25">我的购物车</a>
+        </div>
+
+    </div><!--      /.container-->
+</nav>
+<div class="clearfix"></div>
+
+
+<!--/nav-->
+<script type="text/javascript">
+    new UISearch(document.getElementById('sb-search'));
+</script>

@@ -1,0 +1,97 @@
+<style>
+    .select-address {
+        overflow: hidden;
+        position:fixed;
+        left: 50%;
+        z-index: 19911125;
+        transition:0.3s;
+        box-shadow: 0 3px 12px rgba(0,0,0,.175);
+        background: #fff;
+        display: none;
+    }
+
+    .select-address.active {
+        top: 0!important;
+    }
+
+    .select-address-container div {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    .select-address-container div li {
+        width: 100%;
+        padding: 10px;
+        display: table-cell;
+        vertical-align: middle;
+    }
+
+    .select-address-container div li:nth-child(even) {
+        background: #eee;
+    }
+
+    .select-address-container div li span {
+        font-size: 13px;
+        list-style: none;
+        display: inline-block;
+        margin:5px 7px;
+        cursor: pointer;
+    }
+
+    .select-address-footer {
+        border-top: 1px solid #eee;
+        padding: 10px 15px;
+        overflow: hidden;
+    }
+
+    .select-address-footer input {
+        min-width: 50%;
+    }
+</style>
+
+<div class="select-address form-inline">
+    <div class="select-address-container">
+        <div ng-style="{'border-bottom':(cities.length > 0?'1px solid #eee':'none')}">
+            <li>
+                <!-- 省份 -->
+                <span ng-repeat="item in provinces"
+                      ng-click="aSet.p(item.p)"
+                      ng-class="{'label label-success': p === item.p}">
+                    {{item.p}} {{x}}
+                </span>
+            </li>
+        </div>
+        <div ng-if="cities.length>0" ng-style="{'border-bottom':(dists.length > 0?'1px solid #eee':'none')}">
+            <li>
+                <!-- 城市 -->
+                <span ng-repeat="item in cities"
+                      ng-click="aSet.c(item.n)"
+                      ng-class="{'label label-success': c === item.n}">
+                    {{item.n}}
+                </span>
+            </li>
+        </div>
+        <div>
+            <li ng-if="c">
+                <!-- 县级 -->
+                <span ng-repeat="item in dists"
+                      ng-click="aSet.a(item.s)"
+                      ng-class="{'label label-success': a === item.s}">
+                    {{item.s}}
+                </span>
+                <h5 ng-if="dists.length == 0 || dists == undefined" class="text-muted text-center">没有县级资料</h5>
+            </li>
+        </div>
+    </div>
+
+    <div class="select-address-footer">
+
+		<strong ng-if="p" class="text-danger">{{ p }} {{ c }} {{ a }}　</strong>
+        <input ng-show="p" ng-model="d" class="input-sm green-bottom-border" type="text" placeholder="具体地址" style="display:inline-block"/>
+        <span class="pull-left" style="display: block; margin-top: 5px">
+            <button ng-click="clear()" class="btn btn-sm btn-link">清空</button>
+            <button ng-click="submit()" class="btn btn-sm btn-success" type="submit">确定</button>
+        </span>
+    </div>
+</div>

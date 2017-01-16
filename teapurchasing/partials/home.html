@@ -1,0 +1,86 @@
+<div style="padding-top:12px">
+    <div class="mynavbar"><a class="top-link" href="#">茶行天下</a>
+    </div>
+    <div class="recommend">
+     <div class="row" style="margin:0px">
+      <div class="col-md-12">
+        <div class="row recommend-nav">
+            <div class="col-md-10 col-sm-10 col-xs-10 bigtitle">
+                热门茶叶
+            </div>
+            <div class="col-md-2 col-sm-2m col-xs-2 more"><a ui-sref="main.list">更多>></a></div>
+        </div>
+        <div class="row">
+            <div ng-repeat="product in products" class="col-md-3 col-sm-3 col-xs-3">
+                <div class="row">
+                        <a ui-sref="main.detail({tea:product.id})">
+                        <img class="teapic" src="/api/image/getByUrl?url={{product.url}}">
+                        </a>
+                        <table class="author" style="word-break:normal; word-wrap:break-all;">
+                            <tr valign="top">
+                                <td valign="top" style="padding-left:15px" >名字:</td>
+                                <td width="70%" ><span style="border-bottom:1px dashed rgb(176, 195, 48)" data-toggle="tooltip" data-placement="right" data-html="true">{{product.name}}<span></td>
+                            </tr>
+                            <tr>
+                                <td valign="top" style="padding-left:15px">类别:</td>
+                                <td width="70%">{{product.productType.name}}</td>
+                            </tr
+                            <tr>
+                                <td valign="top" style="padding-left:15px">产地:</td>
+                                <td width="70%">{{product.locality}}</td>
+                            </tr>
+                            <tr>
+                                <td valign="top" style="padding-left:15px">价格:</td>
+                                <td width="70%">{{product.price}}元/两</td>
+                            </tr>
+                        </table>
+                </div>
+            </div>
+        </div>
+      </div>
+     </div>
+    </div>
+    <div class="popular">
+     <div class="row" style="margin:0px">
+      <div class="col-md-12">
+        <div class="row popular-nav">
+            <div class="col-md-10 col-sm-10 col-xs-10 bigtitle">
+                热门众筹
+            </div>
+            <div class="col-md-2 col-sm-2 col-xs-2 more"><a ui-sref="fund.list">更多>></a></div>
+        </div>
+        <div class="row">
+            <div ng-repeat="fund in funds" class="col-md-3 col-sm-3 col-xs-3">
+                <div class="row">
+                        <a ui-sref="fund.detail({tea: fund.id})">
+                        <img class="teapic" src="/api/image/getByUrl?url={{fund.product.url}}">
+                        </a>
+                        <table class="author" style="word-break:normal; word-wrap:break-all;">
+                            <tr valign="top">
+                                <td valign="top" style="padding-left:15px" >名字:</td>
+                                <td width="70%" ><span style="border-bottom:1px dashed rgb(176, 195, 48)" data-toggle="tooltip" data-placement="right" data-html="true">{{fund.product.name}}<span></td>
+                            </tr>
+                            <tr>
+                                <td valign="top" style="padding-left:15px">类别:</td>
+                                <td width="70%">{{fund.product.productType.name}}</td>
+                            </tr
+                            <tr>
+                                <td valign="top" style="padding-left:15px">产地:</td>
+                                <td width="70%">{{fund.product.locality}}</td>
+                            </tr>
+                            <tr>
+                                <td valign="top" style="padding-left:15px">每份数量:</td>
+                                <td width="70%">{{fund.unitNum}}两</td>
+                            </tr>
+                            <tr>
+                                <td valign="top" style="padding-left:15px">每份金额:</td>
+                                <td width="70%">{{fund.unitMoney}}元/份</td>
+                            </tr>
+                        </table>
+                </div>
+            </div>
+        </div>
+      </div>
+     </div>
+    </div>
+</div>

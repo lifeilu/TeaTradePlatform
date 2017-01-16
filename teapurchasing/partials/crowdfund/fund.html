@@ -1,0 +1,54 @@
+<div ng-include src="'partials/header.html'"></div>
+
+ <div class="whole-frame">
+        <div class="row">
+            <div  class="left-frame" >
+                <div>
+                    <div>
+                        <div class="parrent pull-left">
+                            <ul id="side-nav" class="nav nav-tabs nav-stacked" style="border-bottom:none">
+                                <div class="row" style="padding-left:50px; padding-top:10px">
+                                    <div class="col-md-2 col-xs-2 col-sm-2">
+                                        <img src="images/icon_green.svg">
+                                    </div>
+                                    <div class="col-md-8 col-xs-8 col-sm-8">
+                                        <p class="">全部分类</p>
+                                    </div>
+                                    <div class="col-md-2 col-md-pull-1"></div>
+                                </div>
+
+                                <li><p style="border-top: 1px solid #e6e6e6;"></p></li>
+
+                                <li ng-repeat="productcategory in productcategorys | orderBy:'id'">
+                                    <div class="row myTab" >
+                                        <div class="col-md-4 col-xs-4 col-sm-4">
+                                            <img style = "width:25px;height:25px" ng-show = "productcategory.url!=null" src="/api/image/getByUrl?url={{productcategory.url}}"   />
+                                            <img style = "width:25px;height:25px" ng-show = "productcategory.url==null" src="/images/icon_gray.png"   />
+                                        </div>
+                                        <div class="col-md-8 col-xs-8 col-sm-8">
+                                            <a style = "cursor:pointer;" ui-sref="fund.list({producttype: productcategory.id})">{{productcategory.name}}</a>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="row myTab" >
+                                        <div class="col-md-4 col-xs-4 col-sm-4">
+                                            <img style = "width:25px;height:25px" src="/images/tea4.jpg" />
+                                        </div>
+                                        <div class="col-md-8 col-xs-8 col-sm-8">
+                                            <a style = "cursor:pointer;" ui-sref="fund.list({producttype: -1})">查看全部</a>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li><p style="border-top: 1px solid #e6e6e6;"></p></li>
+                                
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div  class="right-frame" >
+                <main class="main-view-container main-container" style="min-height:1150px" ui-view></main>
+            </div>
+        </div>
+    </div>
